@@ -32,6 +32,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_4 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
         label_1 = new javax.swing.JLabel();
         label_2 = new javax.swing.JLabel();
         label_3 = new javax.swing.JLabel();
@@ -59,7 +66,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Evaluación Turistica");
@@ -120,31 +126,65 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Aspectos a Evaluar"));
 
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel4.setLayout(new java.awt.GridLayout(5, 0, 5, 5));
+
+        jPanel8.setLayout(new java.awt.GridLayout(5, 0));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jPanel8.add(jButton1);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jPanel8.add(jButton2);
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jPanel8.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jPanel8.add(jButton4);
+
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jPanel8.add(jButton5);
+
+        jPanel9.setLayout(new java.awt.GridLayout(5, 0));
 
         label_1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         label_1.setText(" Conservación Ambiental");
         label_1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel4.add(label_1);
+        jPanel9.add(label_1);
 
         label_2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         label_2.setText("Singularidad del Destino");
         label_2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel4.add(label_2);
+        jPanel9.add(label_2);
 
         label_3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         label_3.setText(" Diversidad del Entorno");
         label_3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel4.add(label_3);
+        jPanel9.add(label_3);
 
         label_4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         label_4.setText(" Atractivos Naturales");
         label_4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel4.add(label_4);
+        jPanel9.add(label_4);
 
         label_5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         label_5.setText("Atractivos Culturales");
-        jPanel4.add(label_5);
+        jPanel9.add(label_5);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         jPanel6.setLayout(new java.awt.GridLayout(5, 0));
 
@@ -248,9 +288,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(29, 29, 29))
         );
@@ -322,9 +362,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu2.setText("Opciones");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Ayuda");
-        jMenuBar1.add(jMenu3);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -345,7 +382,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -598,9 +635,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_coment_3;
     private javax.swing.JButton btn_coment_4;
     private javax.swing.JButton btn_coment_5;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -614,6 +655,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel label_1;
     private javax.swing.JLabel label_2;
     private javax.swing.JLabel label_3;
