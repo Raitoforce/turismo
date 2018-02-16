@@ -21,6 +21,110 @@ public class FuncionesEvaluacion {
     public String cadena4_1,cadena4_2,cadena4_3,cadena4_4;
     
     
+    public String ayuda1= 
+            "Existe una amplia variedad de atractivos que constituyen patrimonio natural y cultural de la región,"
+            + "\ntal como elementos intangibles como el clima en lo natural y tradiciones en lo cultural y tangibles "
+            + "\ncomo la biodiversidad, especies de flora y fauna en lo natural, como patrimonio cultural"
+            + "\nconstruido, artesanías, gastronomía en lo cultural.";
+    public String ayuda2=
+           "Son los factores de distancia y tiempo de traslado que influyen en la toma de "
+            + "\ndecisiones de los turistas regionales o nacionales, como también en las estrategias "
+            + "\nde precio, promoción y comercialización para motivar el desplazamiento hacia el sitio"
+            ;
+    public String ayuda3= 
+            "Es el potencial para desarrollar una diversidad de productos turísticos combinado el\n"
+            + "aprovechamiento sustentable de los atractivos naturales, una gama de actividades\n"
+            + "realizables todo el año y accesibles para un amplio mercado, y el uso de infraestructura que\n"
+            + "brinda servicios de calidad al visitante"
+            ;
+    public String ayuda4=
+            "Entendiéndose como la unión de los esfuerzos de las autoridades estatales, municipales y\n"
+            + "comunales y la participación conjunta hacia una misma visión del turismo en la región,\n"
+            + "unificando objetivos"
+            ;
+    
+    public String ayuda1_1=
+            "Expresa el nivel de conservación o deterioro que presenta el entorno natural de la región y\n"
+            + "sus atractivos afines como garantía de que el desarrollo turístico sea compatible con el\n"
+            + "mantenimiento de los procesos ecológicos"
+            ;
+    public String ayuda1_2=
+            "Refleja la existencia de atributos turísticos únicos que lo identifican y diferencian de otras\n"
+            + "ofertas temáticas similares que existen en el mercado regional y nacional"
+            ;
+    public String ayuda1_3=
+            "Refleja el número de atractivos naturales y culturales relevantes que posee el destino. Asi\n"
+            + "como la multiplicidad de atractivos turísticos, de innovación y de creatividad, para el\n"
+            + "desarrollo del turismo"
+            ;
+    public String ayuda1_4=
+            "Refleja los recursos naturales (paisaje, flora y fauna silvestres) con una atracción turística\n"
+            + "interesante, capaz de atraer turistas regionales, nacionales e internacionales."
+            ;
+    public String ayuda1_5=
+            "       Refleja los recursos culturales (patrimonio cultural construido, tradiciones,\n"
+            + "gastronomía, fiestas e identidad local) que por su singularidad y valor son capaces de atraer\n"
+            + "a los turistas y provocar que éstos estén motivados en conocer el patrimonio cultural de lugar"
+            ;
+    
+    public String ayuda2_1=
+            "Expresa las condiciones de transito que tiene la(s) vía(s) de acceso al destino, desde el\n"
+            + "centro receptor (centro turístico consolidado) o emisor (centro poblacional mediano a\n"
+            + "grande) más cercano, en cuánto a tipo de camino y su estado de mantenimiento y\n"
+            + "conservación"
+            ;
+    public String ayuda2_2=
+            "Refleja el tiempo que demoran los visitantes en desplazarse desde el centro receptor (centro\n"
+            + "turístico consolidado) o emisor regional turístico (centro población mediano o grande) más\n"
+            + "cercano hasta el punto de inicio del destino"
+            ;
+    public String ayuda2_3=
+            "Mide las posibilidades de encadenamiento o de generación de demanda que tiene el destino\n"
+            + "y sus recursos afines y complementarios, con los principales mercados emisores nacionales\n"
+            + "y regionales"
+            ;
+    public String ayuda2_4=
+            "Refleja si los atractivos por sí sólo generan motivaciones de desplazamientos a partir de las\n"
+            + "características únicas que tienen y las hagan competitivas"
+            ;
+    public String ayuda3_1=
+            "Evalúa los periodos del año (estaciones, meses) que el destino y sus recursos están\n"
+            + "disponibles para el uso público, expresa la variación de la demanda a través de las\n"
+            + "estaciones del año"
+            ;
+    public String ayuda3_2=
+            "Evalúa el abanico de turistas regionales, nacionales e internacionales (por el rango de edad)\n"
+            + "al cual se le ofrecen o pueden ofrecer las actividades y atractivos actuales y potenciales del\n"
+            + "destino, lo que permitirá identificar el segmento de mercado concreto al cual ofertar\n"
+            + "principalmente servicios turísticos"
+            ;
+   public String ayuda3_3=
+           "Refleja el número de actividades actuales y potenciales que ofrece el destino, que son\n"
+           + "afines al turismo o que pueden ser complementarios a ella"
+           ;
+   public String ayuda3_4=
+           "Son los servicios, superestructura y requerimientos con los que cuentan los sitios turísticos\n"
+           + "muchos de ellos son para satisfacer las necesidades básicas (Comercio diario, seguridad,\n"
+           + "casas de cambio, etc.) y otros complementarias o de comodidad para el visitante."        
+           ;
+   public String ayuda4_1=
+           "Entendiéndose como la unión de los esfuerzos de las autoridades estatales, municipales y\n"
+           + "comunales y la participación conjunta hacia una misma visión del turismo en la región,\n"
+           + "unificando objetivos"
+           ;
+   public String ayuda4_2=
+           "Es el conocimiento, claridad y aceptación del uso, límites, reglamentación y status de la\n"
+           + "propiedad de la tierra, que permita identificar el potencial de inversión en la región"
+           ;
+   public String ayuda4_3=
+           "Son los problemas de intereses que pudieran surgir por el uso o desarrollo de un sitio a\n"
+           + "nivel comunitario o regional que puedan afectar al sector turístico"
+           ;
+   public String ayuda4_4=
+           "Es la confianza que se le brinda al visitante para que sienta la libertad de estar en la región\n"
+           + "sin algún riesgo físico por violencia directa o indirecta"
+           ;
+    
     public int sumaP1(){
         return val1_1+val1_2+val1_3+val1_4+val1_5;
     }
