@@ -669,8 +669,84 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,String.valueOf(fe.Ptotal())+"%","Calculo",JOptionPane.PLAIN_MESSAGE);
+        //JOptionPane.showMessageDialog(this,String.valueOf(fe.Ptotal())+"%","Calculo",JOptionPane.PLAIN_MESSAGE);
+        fe.CrearGrafica();
     }//GEN-LAST:event_btn_calcularActionPerformed
+
+    private void btn_coment_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_coment_1ActionPerformed
+
+    private void btn_ayuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda1ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_1,label_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_1,label_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_1,label_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_1,label_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda1ActionPerformed
+
+    private void btn_ayuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda2ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_2,label_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_2,label_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_2,label_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_2,label_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda2ActionPerformed
+
+    private void btn_ayuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda3ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_3,label_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_3,label_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_3,label_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_3,label_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda3ActionPerformed
+
+    private void btn_ayuda4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda4ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_4,label_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_4,label_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_4,label_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_4,label_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda4ActionPerformed
+
+    private void btn_ayuda5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda5ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_5,label_5.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda5ActionPerformed
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         // TODO add your handling code here:
@@ -688,85 +764,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenu3MouseClicked
 
-    private void btn_coment_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_coment_1ActionPerformed
-
-    private void btn_ayuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda1ActionPerformed
-        // TODO add your handling code here:
-        if(fe.state==1){
-            JOptionPane.showMessageDialog(this,fe.ayuda1_1,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==2){
-            JOptionPane.showMessageDialog(this,fe.ayuda2_1,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==3){
-            JOptionPane.showMessageDialog(this,fe.ayuda3_1,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==4){
-            JOptionPane.showMessageDialog(this,fe.ayuda4_1,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btn_ayuda1ActionPerformed
-
-    private void btn_ayuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda2ActionPerformed
-        // TODO add your handling code here:
-        if(fe.state==1){
-            JOptionPane.showMessageDialog(this,fe.ayuda1_2,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==2){
-            JOptionPane.showMessageDialog(this,fe.ayuda2_2,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==3){
-            JOptionPane.showMessageDialog(this,fe.ayuda3_2,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==4){
-            JOptionPane.showMessageDialog(this,fe.ayuda4_2,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btn_ayuda2ActionPerformed
-
-    private void btn_ayuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda3ActionPerformed
-        // TODO add your handling code here:
-        if(fe.state==1){
-            JOptionPane.showMessageDialog(this,fe.ayuda1_3,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==2){
-            JOptionPane.showMessageDialog(this,fe.ayuda2_3,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==3){
-            JOptionPane.showMessageDialog(this,fe.ayuda3_3,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==4){
-            JOptionPane.showMessageDialog(this,fe.ayuda4_3,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btn_ayuda3ActionPerformed
-
-    private void btn_ayuda4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda4ActionPerformed
-        // TODO add your handling code here:
-        if(fe.state==1){
-            JOptionPane.showMessageDialog(this,fe.ayuda1_4,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==2){
-            JOptionPane.showMessageDialog(this,fe.ayuda2_4,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==3){
-            JOptionPane.showMessageDialog(this,fe.ayuda3_4,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-        if(fe.state==4){
-            JOptionPane.showMessageDialog(this,fe.ayuda4_4,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btn_ayuda4ActionPerformed
-
-    private void btn_ayuda5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda5ActionPerformed
-        // TODO add your handling code here:
-        if(fe.state==1){
-            JOptionPane.showMessageDialog(this,fe.ayuda1_5,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btn_ayuda5ActionPerformed
-
     /**
      * @param args the command line arguments
      */
-  
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_1;

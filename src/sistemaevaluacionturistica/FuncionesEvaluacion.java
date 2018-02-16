@@ -5,6 +5,13 @@
  */
 package sistemaevaluacionturistica;
 
+import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
  * @author Usuario
@@ -150,5 +157,39 @@ public class FuncionesEvaluacion {
         double p4=(double) (v4*0.40);
    
         return (p1+p2+p3+p4)*100;
+    }
+    
+    public void CrearGrafica(){
+        JFreeChart grafica= null;
+        DefaultCategoryDataset data= new DefaultCategoryDataset();
+        
+        data.addValue(val1_1,"Conservacion Ambiental","1.1");
+        data.addValue(val1_2,"Singularidad del Destino","1.2");
+        data.addValue(val1_3,"Diversidad del Entorno","1.3");
+        data.addValue(val1_4,"Atractivos Naturales","1.4");
+        data.addValue(val1_5,"Atractivos Culturales","1.5");
+        data.addValue(val2_1,"Accesibilidad","2.1");
+        data.addValue(val2_2,"Proximidad","2.2");
+        data.addValue(val2_3,"Inserción a la oferta turística","2.3");
+        data.addValue(val2_4,"Atractividad","2.4");
+        data.addValue(val3_1,"Estacionalidad","3.1");
+        data.addValue(val3_2,"Tipo de Turista","3.2");
+        data.addValue(val3_3,"Número de Actividades","3.3");
+        data.addValue(val3_4,"Servicios Básicos","3.4");
+        data.addValue(val4_1,"Compromiso de Autoridades","4.1");
+        data.addValue(val4_2,"Tenencia de la Tierra","4.2");
+        data.addValue(val4_3,"Conflictos en la región","4.3");
+        data.addValue(val4_4,"Seguridad","4.4");
+        
+        grafica= ChartFactory.createBarChart3D("Caracteristicas del estado","Aspecto"
+                ,"Puntuaje",data, PlotOrientation.HORIZONTAL,true, true,false);
+        
+        //Se crea la ventana para lanzarla
+        ChartPanel panel=new ChartPanel(grafica);
+        JFrame ventana=new JFrame("Grafica");
+        ventana.getContentPane().add(panel);
+        ventana.pack();
+        ventana.setVisible(true);
+        //return  ventana;
     }
 }
