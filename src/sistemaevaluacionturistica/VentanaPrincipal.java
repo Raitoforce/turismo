@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form VentanaPrincipal
      */
@@ -33,11 +34,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btn_ayuda1 = new javax.swing.JButton();
+        btn_ayuda2 = new javax.swing.JButton();
+        btn_ayuda3 = new javax.swing.JButton();
+        btn_ayuda4 = new javax.swing.JButton();
+        btn_ayuda5 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         label_1 = new javax.swing.JLabel();
         label_2 = new javax.swing.JLabel();
@@ -66,6 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Evaluación Turistica");
@@ -127,22 +129,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jPanel8.setLayout(new java.awt.GridLayout(5, 0));
+        jPanel8.setLayout(new java.awt.GridLayout(5, 0, 0, 1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
-        jPanel8.add(jButton1);
+        btn_ayuda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ayuda1ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btn_ayuda1);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
-        jPanel8.add(jButton2);
+        btn_ayuda2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ayuda2ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btn_ayuda2);
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
-        jPanel8.add(jButton3);
+        btn_ayuda3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ayuda3ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btn_ayuda3);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
-        jPanel8.add(jButton4);
+        btn_ayuda4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ayuda4ActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btn_ayuda4);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
-        jPanel8.add(jButton5);
+        btn_ayuda5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jPanel8.add(btn_ayuda5);
 
         jPanel9.setLayout(new java.awt.GridLayout(5, 0));
 
@@ -183,10 +205,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jPanel6.setLayout(new java.awt.GridLayout(5, 0));
+        jPanel6.setLayout(new java.awt.GridLayout(5, 0, 0, 10));
 
         txt_1.setColumns(3);
         txt_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -259,24 +281,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jPanel6.add(txt_5);
 
-        jPanel7.setLayout(new java.awt.GridLayout(5, 1));
+        jPanel7.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
 
+        btn_coment_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_1.setText("Comentario");
         btn_coment_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_coment_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_coment_1ActionPerformed(evt);
+            }
+        });
         jPanel7.add(btn_coment_1);
 
+        btn_coment_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_2.setText("Comentario");
         btn_coment_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(btn_coment_2);
 
+        btn_coment_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_3.setText("Comentario");
         btn_coment_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(btn_coment_3);
 
+        btn_coment_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_4.setText("Comentario");
         btn_coment_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(btn_coment_4);
 
+        btn_coment_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_5.setText("Comentario");
         btn_coment_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(btn_coment_5);
@@ -297,10 +329,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -333,6 +365,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                     .addContainerGap()))
         );
 
+        jMenuBar1.setBackground(javax.swing.UIManager.getDefaults().getColor("MenuBar.highlight"));
+
         jMenu1.setText("Archivo");
         jMenu1.setContentAreaFilled(false);
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -361,6 +395,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Opciones");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -403,6 +445,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txt_5.setVisible(false);
         btn_coment_5.setVisible(false);
         
+        btn_ayuda5.setVisible(false);
+        
       FormatoCampo(txt_1,fe.val2_1);
       FormatoCampo(txt_2,fe.val2_2);
       FormatoCampo(txt_3,fe.val2_3);
@@ -423,6 +467,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         label_5.setVisible(true);
         txt_5.setVisible(true);
+        btn_ayuda5.setVisible(true);
         
       FormatoCampo(txt_1,fe.val1_1);
       FormatoCampo(txt_2,fe.val1_2);
@@ -443,6 +488,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         label_5.setVisible(false);
         txt_5.setVisible(false);
         
+        btn_ayuda5.setVisible(false);
+        
         FormatoCampo(txt_1,fe.val3_1);
         FormatoCampo(txt_2,fe.val3_2);
         FormatoCampo(txt_3,fe.val3_3);
@@ -459,6 +506,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_coment_5.setVisible(false);
         label_5.setVisible(false);
         txt_5.setVisible(false);
+        btn_ayuda5.setVisible(false);
         
         FormatoCampo(txt_1,fe.val4_1);
         FormatoCampo(txt_2,fe.val4_2);
@@ -619,6 +667,90 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,String.valueOf(fe.Ptotal())+"%","Calculo",JOptionPane.PLAIN_MESSAGE);
     }//GEN-LAST:event_btn_calcularActionPerformed
 
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void btn_coment_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_coment_1ActionPerformed
+
+    private void btn_ayuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda1ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_1,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_1,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_1,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_1,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda1ActionPerformed
+
+    private void btn_ayuda2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda2ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_2,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_2,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_2,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_2,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda2ActionPerformed
+
+    private void btn_ayuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda3ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_3,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_3,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_3,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_3,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda3ActionPerformed
+
+    private void btn_ayuda4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda4ActionPerformed
+        // TODO add your handling code here:
+        if(fe.state==1){
+            JOptionPane.showMessageDialog(this,fe.ayuda1_4,btn_1.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==2){
+            JOptionPane.showMessageDialog(this,fe.ayuda2_4,btn_2.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==3){
+            JOptionPane.showMessageDialog(this,fe.ayuda3_4,btn_3.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+        if(fe.state==4){
+            JOptionPane.showMessageDialog(this,fe.ayuda4_4,btn_4.getText(),JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_ayuda4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -629,19 +761,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_2;
     private javax.swing.JButton btn_3;
     private javax.swing.JButton btn_4;
+    private javax.swing.JButton btn_ayuda1;
+    private javax.swing.JButton btn_ayuda2;
+    private javax.swing.JButton btn_ayuda3;
+    private javax.swing.JButton btn_ayuda4;
+    private javax.swing.JButton btn_ayuda5;
     private javax.swing.JButton btn_calcular;
     private javax.swing.JButton btn_coment_1;
     private javax.swing.JButton btn_coment_2;
     private javax.swing.JButton btn_coment_3;
     private javax.swing.JButton btn_coment_4;
     private javax.swing.JButton btn_coment_5;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
