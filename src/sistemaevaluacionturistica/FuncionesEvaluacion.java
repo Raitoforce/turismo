@@ -156,7 +156,31 @@ public class FuncionesEvaluacion {
         double p3=(double) (v3*0.15);
         double p4=(double) (v4*0.40);
    
+//        System.out.println(p1);
+//        System.out.println(p2);
+//        System.out.println(p3);
+//        System.out.println(p4);
         return (p1+p2+p3+p4)*100;
+    }
+    
+    public double P1(){
+         double v1=(double) ((double)sumaP1()/25.0);
+         return (double) (v1*0.30);
+    }
+    
+    public double P2(){
+         double v2=(double) ((double)sumaP2()/20.0);
+         return (double) (v2*0.15);
+    }
+    
+    public double P3(){
+         double v3=(double) ((double)sumaP3()/20.0);
+         return (double) (v3*0.15);
+    }
+    
+     public double P4(){
+         double v4=(double) ((double)sumaP4()/20.0);
+         return (double) (v4*0.40);
     }
     
     public void CrearGrafica(){
@@ -191,5 +215,68 @@ public class FuncionesEvaluacion {
         ventana.pack();
         ventana.setVisible(true);
         //return  ventana;
+    }
+    
+    public void MostrarResultado(){
+        VentanaR vr=new VentanaR(this);
+        vr.setAlwaysOnTop(true);
+        vr.pack();
+        vr.setVisible(true);
+    }
+    
+    public boolean checarCampos(){
+        boolean band=true;
+        if(val1_1==-1){
+            band=false;
+        }
+        if(val1_2==-1){
+            band=false;
+        }
+        if(val1_3==-1){
+            band=false;
+        }
+        if(val1_4==-1){
+            band=false;
+        }
+        if(val1_5==-1){
+            band=false;
+        }
+        if(val2_1==-1){
+            band=false;
+        }
+        if(val2_2==-1){
+            band=false;
+        }
+        if(val2_3==-1){
+            band=false;
+        }
+        if(val2_4==-1){
+            band=false;
+        }
+        if(val3_1==-1){
+            band=false;
+        }
+        if(val3_2==-1){
+            band=false;
+        }
+        if(val3_3==-1){
+            band=false;
+        }
+        if(val3_4==-1){
+            band=false;
+        }
+        if(val4_1==-1){
+            band=false;
+        }
+        if(val4_2==-1){
+            band=false;
+        }
+        if(val4_3==-1){
+            band=false;
+        }
+        if(val4_4==-1){
+            band=false;
+        }
+        return band;
     }
 }

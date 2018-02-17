@@ -747,7 +747,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(this,String.valueOf(fe.Ptotal())+"%","Calculo",JOptionPane.PLAIN_MESSAGE);
-        fe.CrearGrafica();
+        if(fe.checarCampos()){
+            fe.MostrarResultado();
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"Por favor llene todos los campos","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btn_calcularActionPerformed
 
     private void btn_coment_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_1ActionPerformed
