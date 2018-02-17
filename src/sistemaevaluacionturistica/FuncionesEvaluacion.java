@@ -27,6 +27,26 @@ public class FuncionesEvaluacion {
     public String cadena3_1,cadena3_2,cadena3_3,cadena3_4;
     public String cadena4_1,cadena4_2,cadena4_3,cadena4_4;
     
+    public String municipio="";
+    public String estado="";
+    
+    public String comentario1_1;
+    public String comentario1_2;
+    public String comentario1_3;
+    public String comentario1_4;
+    public String comentario1_5;
+    public String comentario2_1;
+    public String comentario2_2;
+    public String comentario2_3;
+    public String comentario2_4;
+    public String comentario3_1;
+    public String comentario3_2;
+    public String comentario3_3;
+    public String comentario3_4;
+    public String comentario4_1;
+    public String comentario4_2;
+    public String comentario4_3;
+    public String comentario4_4;
     
     public String ayuda1= 
             "Existe una amplia variedad de atractivos que constituyen patrimonio natural y cultural de la región,"
@@ -205,7 +225,7 @@ public class FuncionesEvaluacion {
         data.addValue(val4_3,"Conflictos en la región","4.3");
         data.addValue(val4_4,"Seguridad","4.4");
         
-        grafica= ChartFactory.createBarChart3D("Caracteristicas del estado","Aspecto"
+        grafica= ChartFactory.createBarChart3D("Caracteristicas de "+municipio+","+estado,"Aspecto"
                 ,"Puntuaje",data, PlotOrientation.HORIZONTAL,true, true,false);
         
         //Se crea la ventana para lanzarla
@@ -275,6 +295,17 @@ public class FuncionesEvaluacion {
             band=false;
         }
         if(val4_4==-1){
+            band=false;
+        }
+        return band;
+    }
+    
+    public boolean checarDatos(){
+        boolean band=true;
+        if(estado.compareTo("")==0){
+            band=false;
+        }
+        if(municipio.compareTo("")==0){
             band=false;
         }
         return band;

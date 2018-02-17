@@ -1,6 +1,7 @@
 package sistemaevaluacionturistica;
 
 import java.awt.Image;
+import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.Icon;
@@ -46,8 +47,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        lbl_estado = new javax.swing.JTextField();
+        lbl_municipio = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -156,7 +157,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel11.setLayout(new java.awt.GridLayout());
+        jPanel11.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel13.setLayout(new java.awt.GridLayout(3, 0, 0, 35));
 
@@ -171,8 +172,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel11.add(jPanel13);
 
         jPanel12.setLayout(new java.awt.GridLayout(3, 0, 0, 45));
-        jPanel12.add(jTextField1);
-        jPanel12.add(jTextField2);
+        jPanel12.add(lbl_estado);
+        jPanel12.add(lbl_municipio);
 
         jPanel11.add(jPanel12);
 
@@ -291,6 +292,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         txt_1.setColumns(3);
         txt_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_1.setNextFocusableComponent(txt_2);
         txt_1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_1FocusLost(evt);
@@ -305,6 +307,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         txt_2.setColumns(3);
         txt_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_2.setNextFocusableComponent(txt_3);
         txt_2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_2FocusLost(evt);
@@ -319,6 +322,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         txt_3.setColumns(3);
         txt_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_3.setNextFocusableComponent(txt_4);
         txt_3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_3FocusLost(evt);
@@ -333,31 +337,39 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         txt_4.setColumns(3);
         txt_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_4.setNextFocusableComponent(txt_5);
         txt_4.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_4FocusLost(evt);
             }
         });
         txt_4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_4KeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_4KeyTyped(evt);
             }
         });
+        txt_4.setFocusTraversalKeysEnabled(false);
         jPanel6.add(txt_4);
 
         txt_5.setColumns(3);
         txt_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_5.setNextFocusableComponent(btn_calcular);
         txt_5.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_5FocusLost(evt);
             }
         });
         txt_5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_5KeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_5KeyTyped(evt);
             }
         });
+        txt_5.setFocusTraversalKeysEnabled(false);
         jPanel6.add(txt_5);
 
         jPanel7.setLayout(new java.awt.GridLayout(5, 1, 0, 5));
@@ -365,6 +377,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_coment_1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_1.setText("Comentario");
         btn_coment_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_coment_1.setName("1"); // NOI18N
         btn_coment_1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_coment_1ActionPerformed(evt);
@@ -375,21 +388,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_coment_2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_2.setText("Comentario");
         btn_coment_2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_coment_2.setName("2"); // NOI18N
+        btn_coment_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_coment_2ActionPerformed(evt);
+            }
+        });
         jPanel7.add(btn_coment_2);
 
         btn_coment_3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_3.setText("Comentario");
         btn_coment_3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_coment_3.setName("3"); // NOI18N
+        btn_coment_3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_coment_3ActionPerformed(evt);
+            }
+        });
         jPanel7.add(btn_coment_3);
 
         btn_coment_4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_4.setText("Comentario");
         btn_coment_4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_coment_4.setName("4"); // NOI18N
+        btn_coment_4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_coment_4ActionPerformed(evt);
+            }
+        });
         jPanel7.add(btn_coment_4);
 
         btn_coment_5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_5.setText("Comentario");
         btn_coment_5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_coment_5.setName("5"); // NOI18N
+        btn_coment_5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_coment_5ActionPerformed(evt);
+            }
+        });
         jPanel7.add(btn_coment_5);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -667,7 +704,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         char c;
         c = evt.getKeyChar();
-        if(!(c==KeyEvent.VK_0 || c==KeyEvent.VK_1 || c==KeyEvent.VK_2 || c==KeyEvent.VK_3 || c==KeyEvent.VK_4 || c==KeyEvent.VK_5 || c==KeyEvent.VK_DELETE || c==KeyEvent.VK_BACK_SPACE)){
+        if(!(c==KeyEvent.VK_0 || c==KeyEvent.VK_1 || c==KeyEvent.VK_2 || c==KeyEvent.VK_3 || c==KeyEvent.VK_4 || c==KeyEvent.VK_5 || c==KeyEvent.VK_DELETE || 
+                c==KeyEvent.VK_BACK_SPACE)){
             getToolkit().beep();
             evt.consume();
         }
@@ -725,12 +763,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
            if(fe.state==1)
                 fe.val1_4=Integer.parseInt(txt_4.getText());
-           if(fe.state==2)
+           if(fe.state==2){
                 fe.val2_4=Integer.parseInt(txt_4.getText());
-           if(fe.state==3)
+           }
+           if(fe.state==3){
                 fe.val3_4=Integer.parseInt(txt_4.getText());
-           if(fe.state==4)
+           }
+           if(fe.state==4){
                fe.val4_4=Integer.parseInt(txt_4.getText());
+           }
         } catch (Exception e){
         }
     }//GEN-LAST:event_txt_4FocusLost
@@ -738,8 +779,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void txt_5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusLost
         // TODO add your handling code here:
         try {
-           if(fe.state==1)
+           if(fe.state==1){
                 fe.val1_5=Integer.parseInt(txt_5.getText());
+           }
         } catch (Exception e){
         }
     }//GEN-LAST:event_txt_5FocusLost
@@ -747,16 +789,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(this,String.valueOf(fe.Ptotal())+"%","Calculo",JOptionPane.PLAIN_MESSAGE);
-        if(fe.checarCampos()){
+        fe.estado=lbl_estado.getText();
+        fe.municipio=lbl_municipio.getText();
+        if(fe.checarCampos() && fe.checarDatos()){
             fe.MostrarResultado();
         }
         else{
-            JOptionPane.showMessageDialog(this,"Por favor llene todos los campos","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+            if(!fe.checarCampos())
+            JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Aspectos a Evaluar","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+            if(!fe.checarDatos())
+            JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Datos del Municipio","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btn_calcularActionPerformed
 
     private void btn_coment_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_1ActionPerformed
         // TODO add your handling code here:
+        //System.out.println(btn_coment_1.getName());
+        CapturaComentario cm=new CapturaComentario(fe,btn_coment_1.getName());
+        cm.setVisible(true);
     }//GEN-LAST:event_btn_coment_1ActionPerformed
 
     private void btn_ayuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda1ActionPerformed
@@ -870,6 +920,72 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_label_fotoMouseClicked
 
+    private void txt_5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_5KeyPressed
+        // TODO add your handling code here:
+        try {
+            if(!evt.isShiftDown() && evt.getKeyCode()==KeyEvent.VK_TAB){
+                if(fe.state==1)
+                        fe.val1_5=Integer.parseInt(txt_5.getText());
+                        txt_1.requestFocus();
+                        btn_2.doClick();
+            }   
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_txt_5KeyPressed
+
+    private void txt_4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_4KeyPressed
+        // TODO add your handling code here:
+        try{
+            if(!evt.isShiftDown() && evt.getKeyCode()==KeyEvent.VK_TAB){
+                if(fe.state!=1){
+                    switch (fe.state) {
+                        case 2:
+                            fe.val2_4=Integer.parseInt(txt_4.getText());
+                            btn_3.doClick();
+                            break;
+                        case 3:
+                            fe.val3_4=Integer.parseInt(txt_4.getText());
+                            btn_4.doClick();
+                            break;
+                        case 4:
+                            fe.val4_4=Integer.parseInt(txt_4.getText());
+                            btn_1.doClick();
+                            break;
+                    }
+                    txt_1.requestFocus();
+                }else{
+                        txt_5.requestFocus();
+                }
+            }   
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_4KeyPressed
+
+    private void btn_coment_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_2ActionPerformed
+        // TODO add your handling code here:
+        CapturaComentario cm=new CapturaComentario(fe,btn_coment_2.getName());
+        cm.setVisible(true);
+    }//GEN-LAST:event_btn_coment_2ActionPerformed
+
+    private void btn_coment_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_3ActionPerformed
+        // TODO add your handling code here:
+        CapturaComentario cm=new CapturaComentario(fe,btn_coment_3.getName());
+        cm.setVisible(true);
+    }//GEN-LAST:event_btn_coment_3ActionPerformed
+
+    private void btn_coment_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_4ActionPerformed
+        // TODO add your handling code here:
+        CapturaComentario cm=new CapturaComentario(fe,btn_coment_4.getName());
+        cm.setVisible(true);
+    }//GEN-LAST:event_btn_coment_4ActionPerformed
+
+    private void btn_coment_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_5ActionPerformed
+        // TODO add your handling code here:
+        CapturaComentario cm=new CapturaComentario(fe,btn_coment_5.getName());
+        cm.setVisible(true);
+    }//GEN-LAST:event_btn_coment_5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -915,14 +1031,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel label_1;
     private javax.swing.JLabel label_2;
     private javax.swing.JLabel label_3;
     private javax.swing.JLabel label_4;
     private javax.swing.JLabel label_5;
     private javax.swing.JLabel label_foto;
+    private javax.swing.JTextField lbl_estado;
+    private javax.swing.JTextField lbl_municipio;
     private javax.swing.JTextField txt_1;
     private javax.swing.JTextField txt_2;
     private javax.swing.JTextField txt_3;
