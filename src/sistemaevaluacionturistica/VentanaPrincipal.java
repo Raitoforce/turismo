@@ -1,7 +1,6 @@
 package sistemaevaluacionturistica;
 
 import java.awt.Image;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.swing.Icon;
@@ -10,6 +9,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import ConexionBD.conexionBD;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -19,8 +19,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     public VentanaPrincipal() {
         initComponents();
+        bd=new conexionBD(fe);
     }
-    public FuncionesEvaluacion fe= new FuncionesEvaluacion();
+   public FuncionesEvaluacion fe= new FuncionesEvaluacion();
+   
+   public static boolean vro=false;
+   public static boolean vco=false;
+   public conexionBD bd;
    public void FormatoCampo(JTextField txt,int contenido){
        if(contenido!=-1)
         txt.setText(String.valueOf(contenido));
@@ -81,8 +86,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuGuardar = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
@@ -487,6 +491,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.setContentAreaFilled(false);
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jMenuItem5.setMnemonic('a');
         jMenuItem5.setText("Nuevo");
         jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu1.add(jMenuItem5);
@@ -495,13 +500,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Guardar");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Guardar Como");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.add(jMenuItem3);
+        menuGuardar.setText("Guardar");
+        menuGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuGuardarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuGuardar);
 
         jMenuItem4.setText("Cerrar");
         jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -789,24 +795,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void btn_calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_calcularActionPerformed
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(this,String.valueOf(fe.Ptotal())+"%","Calculo",JOptionPane.PLAIN_MESSAGE);
-        fe.estado=lbl_estado.getText();
-        fe.municipio=lbl_municipio.getText();
-        if(fe.checarCampos() && fe.checarDatos()){
-            fe.MostrarResultado();
-        }
-        else{
-            if(!fe.checarCampos())
-            JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Aspectos a Evaluar","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
-            if(!fe.checarDatos())
-            JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Datos del Municipio","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+        if(!vro){
+            fe.estado=lbl_estado.getText();
+            fe.municipio=lbl_municipio.getText();
+            if(fe.checarCampos() && fe.checarDatos()){
+                fe.MostrarResultado();
+                vro=true;
+            }
+            else{
+                if(!fe.checarCampos())
+                JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Aspectos a Evaluar","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+                if(!fe.checarDatos())
+                JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Datos del Municipio","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btn_calcularActionPerformed
 
     private void btn_coment_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_1ActionPerformed
         // TODO add your handling code here:
         //System.out.println(btn_coment_1.getName());
-        CapturaComentario cm=new CapturaComentario(fe,btn_coment_1.getName());
-        cm.setVisible(true);
+        if(!vco){
+            CapturaComentario cm=new CapturaComentario(fe,btn_coment_1.getName());
+            cm.setVisible(true);
+            vco=true;
+        }
     }//GEN-LAST:event_btn_coment_1ActionPerformed
 
     private void btn_ayuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ayuda1ActionPerformed
@@ -964,27 +976,56 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btn_coment_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_2ActionPerformed
         // TODO add your handling code here:
-        CapturaComentario cm=new CapturaComentario(fe,btn_coment_2.getName());
-        cm.setVisible(true);
+        if(!vco){
+            CapturaComentario cm=new CapturaComentario(fe,btn_coment_2.getName());
+            cm.setVisible(true);
+            vco=true;
+        }    
     }//GEN-LAST:event_btn_coment_2ActionPerformed
 
     private void btn_coment_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_3ActionPerformed
         // TODO add your handling code here:
-        CapturaComentario cm=new CapturaComentario(fe,btn_coment_3.getName());
-        cm.setVisible(true);
+        if(!vco){    
+            CapturaComentario cm=new CapturaComentario(fe,btn_coment_3.getName());
+            cm.setVisible(true);
+            vco=true;
+        }
     }//GEN-LAST:event_btn_coment_3ActionPerformed
 
     private void btn_coment_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_4ActionPerformed
         // TODO add your handling code here:
-        CapturaComentario cm=new CapturaComentario(fe,btn_coment_4.getName());
-        cm.setVisible(true);
+        if(!vco){    
+            CapturaComentario cm=new CapturaComentario(fe,btn_coment_4.getName());
+            cm.setVisible(true);
+            vco=true;
+        }
     }//GEN-LAST:event_btn_coment_4ActionPerformed
 
     private void btn_coment_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_5ActionPerformed
         // TODO add your handling code here:
-        CapturaComentario cm=new CapturaComentario(fe,btn_coment_5.getName());
-        cm.setVisible(true);
+        if(!vco){
+            CapturaComentario cm=new CapturaComentario(fe,btn_coment_5.getName());
+            cm.setVisible(true);
+            vco=true;
+        }
     }//GEN-LAST:event_btn_coment_5ActionPerformed
+
+    private void menuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGuardarActionPerformed
+        // TODO add your handling code here:
+        if(!vro){
+            fe.estado=lbl_estado.getText();
+            fe.municipio=lbl_municipio.getText();
+            if(fe.checarCampos() && fe.checarDatos()){
+                bd.Guardar();
+            }
+            else{
+                if(!fe.checarCampos())
+                JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Aspectos a Evaluar","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+                if(!fe.checarDatos())
+                JOptionPane.showMessageDialog(this,"Por favor llene todos los campos de Datos del Municipio","Mensaje de Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_menuGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1014,8 +1055,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
@@ -1039,6 +1078,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel label_foto;
     private javax.swing.JTextField lbl_estado;
     private javax.swing.JTextField lbl_municipio;
+    private javax.swing.JMenuItem menuGuardar;
     private javax.swing.JTextField txt_1;
     private javax.swing.JTextField txt_2;
     private javax.swing.JTextField txt_3;

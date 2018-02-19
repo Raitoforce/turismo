@@ -14,6 +14,7 @@ public class VentanaR extends javax.swing.JFrame {
      * Creates new form VentanaR
      */
     public FuncionesEvaluacion fe=null;
+    public static boolean vg=false;
     
     public void asignarValores(){
         lbl1_1.setText(String.valueOf(fe.val1_1));
@@ -138,6 +139,11 @@ public class VentanaR extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(new java.awt.GridLayout(5, 1, 0, 1));
 
         jPanel2.setLayout(new java.awt.GridLayout(7, 0));
@@ -489,9 +495,18 @@ public class VentanaR extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        fe.CrearGrafica();
+        if(!vg){    
+            fe.CrearGrafica();
+            vg=true;
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaPrincipal.vro=false;
+    }//GEN-LAST:event_formWindowClosed
+    
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

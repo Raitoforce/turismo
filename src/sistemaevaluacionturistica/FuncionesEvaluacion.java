@@ -5,6 +5,7 @@
  */
 package sistemaevaluacionturistica;
 
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -22,32 +23,32 @@ public class FuncionesEvaluacion {
     public int val2_1=-1,val2_2=-1,val2_3=-1,val2_4=-1;
     public int val3_1=-1,val3_2=-1,val3_3=-1,val3_4=-1;
     public int val4_1=-1,val4_2=-1,val4_3=-1,val4_4=-1;
-    public String cadena1_1,cadena1_2,cadena1_3,cadena1_4,cadena1_5;
-    public String cadena2_1,cadena2_2,cadena2_3,cadena2_4;
-    public String cadena3_1,cadena3_2,cadena3_3,cadena3_4;
-    public String cadena4_1,cadena4_2,cadena4_3,cadena4_4;
-    
+    public String cadena1_1="",cadena1_2="",cadena1_3="",cadena1_4="",cadena1_5="";
+//    public String cadena2_1,cadena2_2,cadena2_3,cadena2_4;
+//    public String cadena3_1,cadena3_2,cadena3_3,cadena3_4;
+//    public String cadena4_1,cadena4_2,cadena4_3,cadena4_4;
+//    
     public String municipio="";
     public String estado="";
+    public String img="";
     
-    public String comentario1_1;
-    public String comentario1_2;
-    public String comentario1_3;
-    public String comentario1_4;
-    public String comentario1_5;
-    public String comentario2_1;
-    public String comentario2_2;
-    public String comentario2_3;
-    public String comentario2_4;
-    public String comentario3_1;
-    public String comentario3_2;
-    public String comentario3_3;
-    public String comentario3_4;
-    public String comentario4_1;
-    public String comentario4_2;
-    public String comentario4_3;
-    public String comentario4_4;
-    
+    public String comentario1_1="";
+    public String comentario1_2="";
+    public String comentario1_3="";
+    public String comentario1_4="";
+    public String comentario1_5="";
+    public String comentario2_1="";
+    public String comentario2_2="";
+    public String comentario2_3="";
+    public String comentario2_4="";
+    public String comentario3_1="";
+    public String comentario3_2="";
+    public String comentario3_3="";
+    public String comentario3_4="";
+    public String comentario4_1="";
+    public String comentario4_2="";
+    public String comentario4_3="";
+    public String comentario4_4=""; 
     public String ayuda1= 
             "Existe una amplia variedad de atractivos que constituyen patrimonio natural y cultural de la región,"
             + "\ntal como elementos intangibles como el clima en lo natural y tradiciones en lo cultural y tangibles "
@@ -231,6 +232,17 @@ public class FuncionesEvaluacion {
         //Se crea la ventana para lanzarla
         ChartPanel panel=new ChartPanel(grafica);
         JFrame ventana=new JFrame("Grafica");
+        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+
+            private void formWindowClosing(WindowEvent evt) {
+                 //To change body of generated methods, choose Tools | Templates.
+                 VentanaR.vg=false;
+            }
+        });
         ventana.getContentPane().add(panel);
         ventana.pack();
         ventana.setVisible(true);
