@@ -94,8 +94,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         menuAbrir = new javax.swing.JMenuItem();
         menuGuardar = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuCerrar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuBorrar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -184,6 +185,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jPanel12.setLayout(new java.awt.GridLayout(3, 0, 0, 45));
         jPanel12.add(lbl_estado);
+
+        lbl_municipio.setNextFocusableComponent(txt_1);
         jPanel12.add(lbl_municipio);
 
         jPanel11.add(jPanel12);
@@ -521,13 +524,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(menuGuardar);
 
-        jMenuItem4.setText("Cerrar");
-        jMenuItem4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.add(jMenuItem4);
+        menuCerrar.setText("Cerrar");
+        menuCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCerrarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuCerrar);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Opciones");
+
+        menuBorrar.setText("Borar Base de Datos");
+        menuBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBorrarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuBorrar);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
@@ -1024,12 +1041,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void menuGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuGuardarActionPerformed
         // TODO add your handling code here:
-        if(!vro){
+        if(!vro && !vco){
             fe.estado=lbl_estado.getText();
             fe.municipio=lbl_municipio.getText();
             if(fe.checarCampos() && fe.checarDatos()){
-                bd.Guardar();
-                JOptionPane.showMessageDialog(this,"Municipio Guardado");
+                if(!bd.inTable(fe.estado,fe.municipio)){
+                    bd.Guardar();
+                    JOptionPane.showMessageDialog(this,"Municipio Guardado");
+                }else{
+                    int option= JOptionPane.showConfirmDialog(null,"¿Deseas Sobreescribir?","Municipio Existente",JOptionPane.YES_NO_OPTION);
+                    if(option==JOptionPane.YES_OPTION){
+                        bd.Actualizar(fe.estado,fe.municipio);
+                    }
+                }
             }
             else{
                 if(!fe.checarCampos())
@@ -1045,6 +1069,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaAbrir va=new VentanaAbrir(fe,this);
         va.setVisible(true);
     }//GEN-LAST:event_menuAbrirActionPerformed
+
+    private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_menuCerrarActionPerformed
+
+    private void menuBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarActionPerformed
+        // TODO add your handling code here:
+        bd.BorrarBD();
+    }//GEN-LAST:event_menuBorrarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1069,7 +1103,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -1093,6 +1126,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField lbl_estado;
     private javax.swing.JTextField lbl_municipio;
     private javax.swing.JMenuItem menuAbrir;
+    private javax.swing.JMenuItem menuBorrar;
+    private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuGuardar;
     private javax.swing.JTextField txt_1;
     private javax.swing.JTextField txt_2;
