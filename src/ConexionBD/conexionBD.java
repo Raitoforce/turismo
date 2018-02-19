@@ -3,8 +3,6 @@ package ConexionBD;
 import sistemaevaluacionturistica.FuncionesEvaluacion;
 
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class conexionBD {
@@ -26,19 +24,6 @@ public class conexionBD {
         }
         
         return cn;
-    }
-    
-    public ResultSet consulta(String Consulta){
-        ResultSet rs=null;
-        try {
-            PreparedStatement ps = cn.prepareStatement(Consulta);
-            ps.executeQuery();
-            //ps.close();
-            
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Fallo Consulta");
-        }
-        return rs;
     }
     
     public void Guardar(){
@@ -108,6 +93,54 @@ public class conexionBD {
         }
     }
     
-    public void Abrir(){
+    public void Abrir(String estado,String municipio){
+       ResultSet rs=null;
+        try{
+            PreparedStatement ps=getConexion().prepareStatement("select * from TABLA_MUNICIPIOS where nombre_estado=? and municipio=?");
+            ps.setString(1,estado);
+            ps.setString(2,municipio);
+            rs=ps.executeQuery();
+            rs.next();
+                    
+            fe.estado=rs.getString(2);
+            fe.municipio=rs.getString(3);
+            
+            fe.val1_1=rs.getInt(5);
+            fe.val1_2=rs.getInt(6);
+            fe.val1_3=rs.getInt(7);
+            fe.val1_4=rs.getInt(8);
+            fe.val1_5=rs.getInt(9);
+            fe.val2_1=rs.getInt(10);
+            fe.val2_2=rs.getInt(11);
+            fe.val2_3=rs.getInt(12);
+            fe.val2_4=rs.getInt(13);
+            fe.val3_1=rs.getInt(14);
+            fe.val3_2=rs.getInt(15);
+            fe.val3_3=rs.getInt(16);
+            fe.val3_4=rs.getInt(17);
+            fe.val4_1=rs.getInt(18);
+            fe.val4_2=rs.getInt(19);
+            fe.val4_3=rs.getInt(20);
+            fe.val4_4=rs.getInt(21);
+            
+            fe.comentario1_1=rs.getString(22);
+            fe.comentario1_2=rs.getString(23);
+            fe.comentario1_3=rs.getString(24);
+            fe.comentario1_4=rs.getString(25);
+            fe.comentario1_5=rs.getString(26);
+            fe.comentario2_1=rs.getString(27);
+            fe.comentario2_2=rs.getString(28);
+            fe.comentario2_3=rs.getString(29);
+            fe.comentario2_4=rs.getString(30);
+            fe.comentario3_1=rs.getString(31);
+            fe.comentario3_2=rs.getString(32);
+            fe.comentario3_3=rs.getString(33);
+            fe.comentario3_4=rs.getString(34);
+            fe.comentario4_1=rs.getString(35);
+            fe.comentario4_2=rs.getString(36);
+            fe.comentario4_3=rs.getString(37);
+            fe.comentario4_4=rs.getString(38);
+                
+        }catch(SQLException e){System.out.println(e.getMessage());}
     }
 }

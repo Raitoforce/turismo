@@ -33,6 +33,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
            txt.setText("");
    }
    
+   public void CargarDatos(){
+       lbl_estado.setText(fe.estado);
+       lbl_municipio.setText(fe.municipio);
+       
+       btn_1.doClick();
+   }
+   
     File f;
 
     @SuppressWarnings("unchecked")
@@ -85,7 +92,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuAbrir = new javax.swing.JMenuItem();
         menuGuardar = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -496,9 +503,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu1.add(jMenuItem5);
 
-        jMenuItem1.setText("Abrir");
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.add(jMenuItem1);
+        menuAbrir.setText("Abrir");
+        menuAbrir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAbrirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuAbrir);
 
         menuGuardar.setText("Guardar");
         menuGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1017,6 +1029,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             fe.municipio=lbl_municipio.getText();
             if(fe.checarCampos() && fe.checarDatos()){
                 bd.Guardar();
+                JOptionPane.showMessageDialog(this,"Municipio Guardado");
             }
             else{
                 if(!fe.checarCampos())
@@ -1027,11 +1040,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuGuardarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    
+    private void menuAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAbrirActionPerformed
+        // TODO add your handling code here:
+        VentanaAbrir va=new VentanaAbrir(fe,this);
+        va.setVisible(true);
+    }//GEN-LAST:event_menuAbrirActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_1;
     private javax.swing.JButton btn_2;
@@ -1054,7 +1069,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
@@ -1078,6 +1092,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel label_foto;
     private javax.swing.JTextField lbl_estado;
     private javax.swing.JTextField lbl_municipio;
+    private javax.swing.JMenuItem menuAbrir;
     private javax.swing.JMenuItem menuGuardar;
     private javax.swing.JTextField txt_1;
     private javax.swing.JTextField txt_2;

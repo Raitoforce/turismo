@@ -23,7 +23,7 @@ public class FuncionesEvaluacion {
     public int val2_1=-1,val2_2=-1,val2_3=-1,val2_4=-1;
     public int val3_1=-1,val3_2=-1,val3_3=-1,val3_4=-1;
     public int val4_1=-1,val4_2=-1,val4_3=-1,val4_4=-1;
-    public String cadena1_1="",cadena1_2="",cadena1_3="",cadena1_4="",cadena1_5="";
+    //public String cadena1_1="",cadena1_2="",cadena1_3="",cadena1_4="",cadena1_5="";
 //    public String cadena2_1,cadena2_2,cadena2_3,cadena2_4;
 //    public String cadena3_1,cadena3_2,cadena3_3,cadena3_4;
 //    public String cadena4_1,cadena4_2,cadena4_3,cadena4_4;
@@ -227,7 +227,7 @@ public class FuncionesEvaluacion {
         data.addValue(val4_4,"Seguridad","4.4");
         
         grafica= ChartFactory.createBarChart3D("Caracteristicas de "+municipio+","+estado,"Aspecto"
-                ,"Puntuaje",data, PlotOrientation.HORIZONTAL,true, true,false);
+                ,"Puntuaje",data, PlotOrientation.HORIZONTAL,true,true,false);
         
         //Se crea la ventana para lanzarla
         ChartPanel panel=new ChartPanel(grafica);
