@@ -5,6 +5,8 @@
  */
 package sistemaevaluacionturistica;
 
+import javax.swing.UIManager;
+
 /**
  *
  * @author Usuario
@@ -16,8 +18,14 @@ public class SistemaEvaluacionTuristica {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VentanaPrincipal vp=new VentanaPrincipal();
-        vp.setVisible(true);
+        try { 
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel"); 
+        } catch (Exception ex) { 
+            ex.printStackTrace();
+        }
+
+        VentanaInicio vi=new VentanaInicio();
+        vi.setVisible(true);
     }
     
 }

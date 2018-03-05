@@ -503,7 +503,7 @@ public class VentanaR extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        VentanaPrincipal.vro=false;
+        VentanaInicio.vro=false;
     }//GEN-LAST:event_formWindowClosed
     
     

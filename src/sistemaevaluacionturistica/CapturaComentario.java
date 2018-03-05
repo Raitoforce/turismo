@@ -18,61 +18,61 @@ public class CapturaComentario extends javax.swing.JFrame {
     String name;
     public void cargarComentario(){
         if(fe.state==1){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("11")==0){
                 txta_comentario.setText(fe.comentario1_1);
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("12")==0){
                 txta_comentario.setText(fe.comentario1_2);
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("13")==0){
                 txta_comentario.setText(fe.comentario1_3);
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("14")==0){
                 txta_comentario.setText(fe.comentario1_4);
             }
-            if(name.compareTo("5")==0){
+            if(name.compareTo("15")==0){
                 txta_comentario.setText(fe.comentario1_5);
             }
         }
         if(fe.state==2){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("21")==0){
                 txta_comentario.setText(fe.comentario2_1);
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("22")==0){
                 txta_comentario.setText(fe.comentario2_2);
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("23")==0){
                 txta_comentario.setText(fe.comentario2_3);
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("24")==0){
                 txta_comentario.setText(fe.comentario2_4);
             }
         }
         if(fe.state==3){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("31")==0){
                 txta_comentario.setText(fe.comentario3_1);
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("32")==0){
                 txta_comentario.setText(fe.comentario3_2);
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("33")==0){
                 txta_comentario.setText(fe.comentario3_3);
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("34")==0){
                 txta_comentario.setText(fe.comentario3_4);
             }
         }
         if(fe.state==4){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("41")==0){
                 txta_comentario.setText(fe.comentario4_1);
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("42")==0){
                 txta_comentario.setText(fe.comentario4_2);
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("43")==0){
                 txta_comentario.setText(fe.comentario4_3);
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("44")==0){
                 txta_comentario.setText(fe.comentario4_4);
             }
         }
@@ -83,6 +83,7 @@ public class CapturaComentario extends javax.swing.JFrame {
         this.name=name;
         initComponents();
         cargarComentario();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -177,61 +178,61 @@ public class CapturaComentario extends javax.swing.JFrame {
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         // TODO add your handling code here:
         if(fe.state==1){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("11")==0){
                 fe.comentario1_1=txta_comentario.getText();
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("12")==0){
                 fe.comentario1_2=txta_comentario.getText();
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("13")==0){
                 fe.comentario1_3=txta_comentario.getText();
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("14")==0){
                 fe.comentario1_4=txta_comentario.getText();
             }
-            if(name.compareTo("5")==0){
+            if(name.compareTo("15")==0){
                 fe.comentario1_5=txta_comentario.getText();
             }
         }
         if(fe.state==2){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("21")==0){
                 fe.comentario2_1=txta_comentario.getText();
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("22")==0){
                 fe.comentario2_2=txta_comentario.getText();
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("23")==0){
                 fe.comentario2_3=txta_comentario.getText();
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("24")==0){
                 fe.comentario2_4=txta_comentario.getText();
             }
         }
         if(fe.state==3){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("31")==0){
                 fe.comentario3_1=txta_comentario.getText();
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("32")==0){
                 fe.comentario3_2=txta_comentario.getText();
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("33")==0){
                 fe.comentario3_3=txta_comentario.getText();
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("34")==0){
                 fe.comentario3_4=txta_comentario.getText();
             }
         }
         if(fe.state==4){
-            if(name.compareTo("1")==0){
+            if(name.compareTo("41")==0){
                 fe.comentario4_1=txta_comentario.getText();
             }
-            if(name.compareTo("2")==0){
+            if(name.compareTo("42")==0){
                 fe.comentario4_2=txta_comentario.getText();
             }
-            if(name.compareTo("3")==0){
+            if(name.compareTo("43")==0){
                 fe.comentario4_3=txta_comentario.getText();
             }
-            if(name.compareTo("4")==0){
+            if(name.compareTo("44")==0){
                 fe.comentario4_4=txta_comentario.getText();
             }
         }
@@ -245,12 +246,12 @@ public class CapturaComentario extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        VentanaPrincipal.vco=false;
+        VentanaInicio.vco=false;
     }//GEN-LAST:event_formWindowClosing
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        VentanaPrincipal.vco=false;
+        VentanaInicio.vco=false;
     }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

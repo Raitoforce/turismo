@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import ConexionBD.conexionBD;
+import org.apache.derby.impl.tools.sysinfo.Main;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -91,7 +92,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btn_calcular = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        menuNuevo = new javax.swing.JMenuItem();
         menuAbrir = new javax.swing.JMenuItem();
         menuGuardar = new javax.swing.JMenuItem();
         menuCerrar = new javax.swing.JMenuItem();
@@ -501,10 +502,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.setContentAreaFilled(false);
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jMenuItem5.setMnemonic('a');
-        jMenuItem5.setText("Nuevo");
-        jMenuItem5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu1.add(jMenuItem5);
+        menuNuevo.setMnemonic('a');
+        menuNuevo.setText("Nuevo");
+        menuNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNuevoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuNuevo);
 
         menuAbrir.setText("Abrir");
         menuAbrir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -1080,6 +1086,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bd.BorrarBD();
     }//GEN-LAST:event_menuBorrarActionPerformed
 
+    private void menuNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNuevoActionPerformed
+        // TODO add your handling code here:
+        fe=new FuncionesEvaluacion();
+        CargarDatos();
+    }//GEN-LAST:event_menuNuevoActionPerformed
+
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_1;
@@ -1103,7 +1117,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1129,6 +1142,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuBorrar;
     private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuGuardar;
+    private javax.swing.JMenuItem menuNuevo;
     private javax.swing.JTextField txt_1;
     private javax.swing.JTextField txt_2;
     private javax.swing.JTextField txt_3;

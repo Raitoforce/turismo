@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class VentanaAbrir extends javax.swing.JFrame {
 
     private FuncionesEvaluacion fe;
-    public VentanaPrincipal vp;
+    public VentanaInicio vi;
 
     public void updateBoxM(String estado){
         conexionBD bd= new conexionBD(fe);
@@ -45,11 +45,12 @@ public class VentanaAbrir extends javax.swing.JFrame {
         }catch(SQLException e){System.out.println(e.getMessage());}
     }
    
-    public VentanaAbrir(FuncionesEvaluacion fe,VentanaPrincipal vp) {
+    public VentanaAbrir(FuncionesEvaluacion fe,VentanaInicio vi) {
         initComponents();
         this.fe=fe;
-        this.vp=vp;
+        this.vi=vi;
         llenarEstados();
+        this.setLocationRelativeTo(null);
     }
     
     @SuppressWarnings("unchecked")
@@ -66,6 +67,11 @@ public class VentanaAbrir extends javax.swing.JFrame {
         setTitle("Abrir datos de municipio");
         setLocationByPlatform(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         boxEstado.setPreferredSize(new java.awt.Dimension(180, 20));
         boxEstado.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +157,7 @@ public class VentanaAbrir extends javax.swing.JFrame {
             String municipio=boxMunicipio.getSelectedItem().toString();
             conexionBD bd=new conexionBD(fe);
             bd.Abrir(estado,municipio);
-            vp.CargarDatos();
+            vi.CargarDatos();
             this.dispose();
         } catch (Exception e){
             JOptionPane.showMessageDialog(this,"No hay Municipios Registrados");
@@ -164,6 +170,11 @@ public class VentanaAbrir extends javax.swing.JFrame {
         boxMunicipio.removeAllItems();
         updateBoxM(estado);
     }//GEN-LAST:event_boxEstadoActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        VentanaInicio.vro=false;
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
