@@ -395,9 +395,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jPanel18.add(txt_4);
 
+        txt_5.setEditable(false);
         txt_5.setColumns(3);
         txt_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_5.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_5FocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_5FocusLost(evt);
             }
@@ -566,7 +570,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+            .addComponent(jPanel31, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
             .addComponent(jPanel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -699,7 +703,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         jTabbedPane2.addTab("Potencial de Vinculación", jPanel4);
@@ -774,7 +778,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+            .addComponent(jPanel36, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
             .addComponent(jPanel37, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -907,7 +911,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel39, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         jTabbedPane2.addTab("Diversidad de Oportunidades", jPanel5);
@@ -982,7 +986,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         );
         jPanel45Layout.setVerticalGroup(
             jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel46, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+            .addComponent(jPanel46, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
             .addComponent(jPanel47, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -1115,7 +1119,7 @@ public class VentanaInicio extends javax.swing.JFrame {
                     .addComponent(jPanel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel49, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(0, 0, 0))
         );
 
         jTabbedPane2.addTab("Legalidad e Institucionalidad", jPanel6);
@@ -1995,6 +1999,22 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_4FocusGained
 
+    private void txt_5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusGained
+        // TODO add your handling code here:
+          if (!vro && !vco) {
+            ValorTuristico vt = new ValorTuristico(fe, this, "5");
+            vt.setVisible(true);
+            try {
+                Thread.sleep(10);
+            } catch (Exception e) {
+            }
+            txt_5.requestFocus();
+            vt.requestFocus();
+            vco = true;
+            vro = true;
+        }
+    }//GEN-LAST:event_txt_5FocusGained
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Calcular;
     private javax.swing.JButton btn_ayuda11;
@@ -2102,7 +2122,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField txt_17;
     private javax.swing.JTextField txt_2;
     private javax.swing.JTextField txt_3;
-    private javax.swing.JTextField txt_4;
+    public javax.swing.JTextField txt_4;
     public javax.swing.JTextField txt_5;
     public javax.swing.JTextField txt_6;
     private javax.swing.JTextField txt_7;

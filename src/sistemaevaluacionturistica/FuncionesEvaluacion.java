@@ -21,11 +21,12 @@ public class FuncionesEvaluacion {
 
     public int state = 1;
     public int val1_1 = -1, val1_2 = -1, val1_3 = -1, val1_4 = -1, val1_5 = -1;
+
     public int val1_41 = -1, val1_42 = -1, val1_43 = -1, val1_44 = -1, val1_45 = -1;
-    public int val1_46 = -1, val1_47 = -1, val1_48 = -1, val1_49 = -1, val1_410;
+    public int val1_46 = -1, val1_47 = -1, val1_48 = -1, val1_49 = -1, val1_410 = -1;
 
     public int val1_51 = -1, val1_52 = -1, val1_53 = -1, val1_54 = -1, val1_55 = -1;
-    public int val1_56 = -1, val1_57 = -1, val1_58 = -1, val1_59 = -1, val1_510;
+    public int val1_56 = -1, val1_57 = -1, val1_58 = -1, val1_59 = -1, val1_510 = -1;
 
     public int val2_1 = -1, val2_2 = -1, val2_3 = -1, val2_4 = -1;
     public int val3_1 = -1, val3_2 = -1, val3_3 = -1, val3_4 = -1;
@@ -190,28 +191,28 @@ public class FuncionesEvaluacion {
         return (double) (v4 * 0.40);
     }
 
-    public double vPatrimonio4(){
-        return (val1_41 * 0.4) + (val1_42 * 0.3) + (val1_43 * 0.1) + (val1_44 * 0.2);
+    public float vPatrimonio4() {
+        return (float) (((float)val1_41 * 0.4) + ((float)val1_42 * 0.3) + ((float)val1_43 * 0.1) + ((float)val1_44 * 0.2));
     }
-    
-    public double vPatrimonio5(){
-        return (val1_51 * 0.4) + (val1_52 * 0.3) + (val1_53 * 0.1) + (val1_54 * 0.2);
+
+    public float vPatrimonio5() {
+        return (float) (((float)val1_51 * 0.4) + ((float)val1_52 * 0.3) + ((float)val1_53 * 0.1) + ((float)val1_54 * 0.2));
     }
-    
-    public double vUso4() {
-        return (val1_45 * 0.1) + (val1_46 * 0.1) + (val1_47 * 0.2) + (val1_48 * 0.3)+(val1_49 * 0.2)+(val1_410 * 0.1);
+
+    public float vUso4() {
+        return (float) (((float)val1_45 * 0.1) + ((float)val1_46 * 0.1) + ((float)val1_47 * 0.2) + ((float)val1_48 * 0.3) + ((float)val1_49 * 0.2) + ((float)val1_410 * 0.1));
     }
-    
-    public double vUso5() {
-        return (val1_55 * 0.1) + (val1_56 * 0.1) + (val1_57 * 0.2) + (val1_58 * 0.3)+(val1_59 * 0.2)+(val1_510 * 0.1);
+
+    public float vUso5() {
+        return (float) (((float)val1_55 * 0.1) + ((float)val1_56 * 0.1) + ((float)val1_57 * 0.2) + ((float)val1_58 * 0.3) + ((float)val1_59 * 0.2) + ((float)val1_510 * 0.1));
     }
-    
-    public double vTuristico4(){
-        return  (vPatrimonio4()*0.55)+(vUso4()*0.45);
+
+    public float vTuristico4() {
+        return (float) ((vPatrimonio4() * 0.55) + (vUso4() * 0.45));
     }
-    
-    public double vTuristico5(){
-        return  (vPatrimonio5()*0.55)+(vUso5()*0.45);
+
+    public float vTuristico5() {
+        return (float) ((vPatrimonio5() * 0.55) + (vUso5() * 0.45));
     }
 
     public void CrearGrafica() {
@@ -237,7 +238,7 @@ public class FuncionesEvaluacion {
         data.addValue(val4_4, "Seguridad", "4.4");
 
         grafica = ChartFactory.createBarChart3D("Caracteristicas de " + municipio + "," + estado, "Aspecto",
-                 "Puntuaje", data, PlotOrientation.HORIZONTAL, true, true, false);
+                "Puntuaje", data, PlotOrientation.HORIZONTAL, true, true, false);
 
         //Se crea la ventana para lanzarla
         ChartPanel panel = new ChartPanel(grafica);
