@@ -11,7 +11,11 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -192,19 +196,19 @@ public class FuncionesEvaluacion {
     }
 
     public float vPatrimonio4() {
-        return (float) (((float)val1_41 * 0.4) + ((float)val1_42 * 0.3) + ((float)val1_43 * 0.1) + ((float)val1_44 * 0.2));
+        return (float) (((float) val1_41 * 0.4) + ((float) val1_42 * 0.3) + ((float) val1_43 * 0.1) + ((float) val1_44 * 0.2));
     }
 
     public float vPatrimonio5() {
-        return (float) (((float)val1_51 * 0.4) + ((float)val1_52 * 0.3) + ((float)val1_53 * 0.1) + ((float)val1_54 * 0.2));
+        return (float) (((float) val1_51 * 0.4) + ((float) val1_52 * 0.3) + ((float) val1_53 * 0.1) + ((float) val1_54 * 0.2));
     }
 
     public float vUso4() {
-        return (float) (((float)val1_45 * 0.1) + ((float)val1_46 * 0.1) + ((float)val1_47 * 0.2) + ((float)val1_48 * 0.3) + ((float)val1_49 * 0.2) + ((float)val1_410 * 0.1));
+        return (float) (((float) val1_45 * 0.1) + ((float) val1_46 * 0.1) + ((float) val1_47 * 0.2) + ((float) val1_48 * 0.3) + ((float) val1_49 * 0.2) + ((float) val1_410 * 0.1));
     }
 
     public float vUso5() {
-        return (float) (((float)val1_55 * 0.1) + ((float)val1_56 * 0.1) + ((float)val1_57 * 0.2) + ((float)val1_58 * 0.3) + ((float)val1_59 * 0.2) + ((float)val1_510 * 0.1));
+        return (float) (((float) val1_55 * 0.1) + ((float) val1_56 * 0.1) + ((float) val1_57 * 0.2) + ((float) val1_58 * 0.3) + ((float) val1_59 * 0.2) + ((float) val1_510 * 0.1));
     }
 
     public float vTuristico4() {
@@ -239,7 +243,61 @@ public class FuncionesEvaluacion {
 
         grafica = ChartFactory.createBarChart3D("Caracteristicas de " + municipio + "," + estado, "Aspecto",
                 "Puntuaje", data, PlotOrientation.HORIZONTAL, true, true, false);
+        
 
+        //Se crea la ventana para lanzarla
+        ChartPanel panel = new ChartPanel(grafica);
+        JFrame ventana = new JFrame("Grafica");
+        ventana.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+
+            private void formWindowClosing(WindowEvent evt) {
+                //To change body of generated methods, choose Tools | Templates.
+                VentanaR.vg = false;
+            }
+        });
+        ventana.getContentPane().add(panel);
+        ventana.pack();
+        ventana.setVisible(true);
+        //return  ventana;
+    }
+
+    private XYDataset creaDataset4() {
+        XYSeriesCollection dataset = new XYSeriesCollection();
+
+        XYSeries s1 = new XYSeries("Valor del patrimonio vs Valor de explotación");
+        s1.add(vUso4(), vPatrimonio4());
+
+        dataset.addSeries(s1);
+        return dataset;
+    }
+
+    private XYDataset creaDataset5() {
+        XYSeriesCollection dataset = new XYSeriesCollection();
+
+        XYSeries s1 = new XYSeries("Valor del patrimonio vs Valor de explotación");
+        s1.add(vUso5(), vPatrimonio5());
+
+        dataset.addSeries(s1);
+        return dataset;
+    }
+
+    public void CrearGraficaVS(String name) {
+        JFreeChart grafica = null;
+        XYDataset data = null;
+        if (name.compareTo("4") == 0) {
+            data = creaDataset4();
+        } else {
+            data = creaDataset5();
+        }
+
+        grafica = ChartFactory.createScatterPlot("Grafica VS", "Valor de Aprovechamiento", "Valor Patrimonio", data, PlotOrientation.HORIZONTAL, true, false, false);
+        grafica.getXYPlot().getDomainAxis().setRange(0.0,5.0);
+        grafica.getXYPlot().getRangeAxis().setRange(0.0,5.0);
+        
         //Se crea la ventana para lanzarla
         ChartPanel panel = new ChartPanel(grafica);
         JFrame ventana = new JFrame("Grafica");

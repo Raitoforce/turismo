@@ -1965,7 +1965,6 @@ public class VentanaInicio extends javax.swing.JFrame {
             if (fe.checarCampos() && fe.checarDatos()) {
                 if (!bd.inTable(fe.estado, fe.municipio)) {
                     bd.Guardar();
-                    JOptionPane.showMessageDialog(this, "Municipio Guardado");
                 } else {
                     int option = JOptionPane.showConfirmDialog(null, "¿Deseas Sobreescribir?", "Municipio Existente", JOptionPane.YES_NO_OPTION);
                     if (option == JOptionPane.YES_OPTION) {

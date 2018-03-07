@@ -1,16 +1,14 @@
-
 package sistemaevaluacionturistica;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JTextField;
 
 public class ValorTuristico extends javax.swing.JFrame {
-    
+
     FuncionesEvaluacion fe;
     VentanaInicio vi;
     String name;
 
-    
     public void FormatoCampo(JTextField txt, int contenido) {
         if (contenido != -1) {
             txt.setText(String.valueOf(contenido));
@@ -18,44 +16,43 @@ public class ValorTuristico extends javax.swing.JFrame {
             txt.setText("");
         }
     }
-    
-    public void Refrescar(){
-        if(name.compareTo("4")==0){
-            FormatoCampo(txt_1,fe.val1_41);
-            FormatoCampo(txt_2,fe.val1_42);
-            FormatoCampo(txt_3,fe.val1_43);
-            FormatoCampo(txt_4,fe.val1_44);
-            FormatoCampo(txt_5,fe.val1_45);
-            FormatoCampo(txt_6,fe.val1_46);
-            FormatoCampo(txt_7,fe.val1_47);
-            FormatoCampo(txt_8,fe.val1_48);
-            FormatoCampo(txt_9,fe.val1_49);
-            FormatoCampo(txt_10,fe.val1_410);
-        }else{
-            FormatoCampo(txt_1,fe.val1_51);
-            FormatoCampo(txt_2,fe.val1_52);
-            FormatoCampo(txt_3,fe.val1_53);
-            FormatoCampo(txt_4,fe.val1_54);
-            FormatoCampo(txt_5,fe.val1_55);
-            FormatoCampo(txt_6,fe.val1_56);
-            FormatoCampo(txt_7,fe.val1_57);
-            FormatoCampo(txt_8,fe.val1_58);
-            FormatoCampo(txt_9,fe.val1_59);
-            FormatoCampo(txt_10,fe.val1_510);
+
+    public void Refrescar() {
+        if (name.compareTo("4") == 0) {
+            FormatoCampo(txt_1, fe.val1_41);
+            FormatoCampo(txt_2, fe.val1_42);
+            FormatoCampo(txt_3, fe.val1_43);
+            FormatoCampo(txt_4, fe.val1_44);
+            FormatoCampo(txt_5, fe.val1_45);
+            FormatoCampo(txt_6, fe.val1_46);
+            FormatoCampo(txt_7, fe.val1_47);
+            FormatoCampo(txt_8, fe.val1_48);
+            FormatoCampo(txt_9, fe.val1_49);
+            FormatoCampo(txt_10, fe.val1_410);
+        } else {
+            FormatoCampo(txt_1, fe.val1_51);
+            FormatoCampo(txt_2, fe.val1_52);
+            FormatoCampo(txt_3, fe.val1_53);
+            FormatoCampo(txt_4, fe.val1_54);
+            FormatoCampo(txt_5, fe.val1_55);
+            FormatoCampo(txt_6, fe.val1_56);
+            FormatoCampo(txt_7, fe.val1_57);
+            FormatoCampo(txt_8, fe.val1_58);
+            FormatoCampo(txt_9, fe.val1_59);
+            FormatoCampo(txt_10, fe.val1_510);
         }
-        
+
     }
-    
-    public ValorTuristico(FuncionesEvaluacion fe,VentanaInicio vi,String name){
+
+    public ValorTuristico(FuncionesEvaluacion fe, VentanaInicio vi, String name) {
         initComponents();
-        this.fe=fe;
-        this.vi=vi;
-        this.name=name;
+        this.fe = fe;
+        this.vi = vi;
+        this.name = name;
         this.Refrescar();
         this.setLocationRelativeTo(null);
         this.setAlwaysOnTop(true);
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -209,32 +206,32 @@ public class ValorTuristico extends javax.swing.JFrame {
         jPanel6.setLayout(new java.awt.GridLayout(6, 0, 20, 15));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel7.setText("Jerarquia");
+        jLabel7.setText("Accesos");
         jLabel7.setToolTipText("");
         jPanel6.add(jLabel7);
 
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Grado de Explotación");
+        jLabel8.setText("Señalización");
         jLabel8.setToolTipText("");
         jPanel6.add(jLabel8);
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel9.setText("Potencialidades");
+        jLabel9.setText("Interpretación");
         jLabel9.setToolTipText("");
         jPanel6.add(jLabel9);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel10.setText("Coherencia");
+        jLabel10.setText("Relación act-pot");
         jLabel10.setToolTipText("");
         jPanel6.add(jLabel10);
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel13.setText("Coherencia");
+        jLabel13.setText("Actividad Turistica");
         jLabel13.setToolTipText("");
         jPanel6.add(jLabel13);
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel14.setText("Coherencia");
+        jLabel14.setText("Facilidades");
         jLabel14.setToolTipText("");
         jPanel6.add(jLabel14);
 
@@ -374,6 +371,11 @@ public class ValorTuristico extends javax.swing.JFrame {
 
         jButton1.setText("Grafica VS");
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Guardar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -424,23 +426,24 @@ public class ValorTuristico extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        if(name.compareTo("4")==0){
+        if (name.compareTo("4") == 0) {
             vi.txt_5.requestFocus();
-        }else{
+        } else {
             vi.jTabbedPane2.setSelectedIndex(1);
             vi.txt_6.requestFocus();
         }
-        VentanaInicio.vro=false;
-        VentanaInicio.vco=false;
+        VentanaInicio.vro = false;
+        VentanaInicio.vco = false;
     }//GEN-LAST:event_formWindowClosed
 
     private void txt_4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_4FocusLost
         // TODO add your handling code here:
-          try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_44 = Integer.parseInt(txt_4.getText());
-            else
+            } else {
                 fe.val1_54 = Integer.parseInt(txt_4.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_4FocusLost
@@ -449,7 +452,11 @@ public class ValorTuristico extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
             try {
-                fe.val1_44 = Integer.parseInt(txt_4.getText());
+                if (name.compareTo("4") == 0) {
+                    fe.val1_44 = Integer.parseInt(txt_4.getText());
+                } else {
+                    fe.val1_54 = Integer.parseInt(txt_4.getText());
+                }
             } catch (Exception e) {
             }
 
@@ -474,20 +481,25 @@ public class ValorTuristico extends javax.swing.JFrame {
     private void txt_10FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_10FocusLost
         // TODO add your handling code here:
         try {
-            if(name.compareTo("4")==0)
+            if (name.compareTo("4") == 0) {
                 fe.val1_410 = Integer.parseInt(txt_10.getText());
-            else
+            } else {
                 fe.val1_510 = Integer.parseInt(txt_10.getText());
-            
+            }
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_10FocusLost
 
     private void txt_10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_10KeyPressed
         // TODO add your handling code here:
-         if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
+        if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
             try {
-                //fe.val2_4 = Integer.parseInt(txt_4.getText());
+                if (name.compareTo("4") == 0) {
+                fe.val1_410 = Integer.parseInt(txt_10.getText());
+            } else {
+                fe.val1_510 = Integer.parseInt(txt_10.getText());
+            }
             } catch (Exception e) {
             }
 
@@ -497,7 +509,7 @@ public class ValorTuristico extends javax.swing.JFrame {
 
     private void txt_10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_10KeyTyped
         // TODO add your handling code here:
-         char c;
+        char c;
         c = evt.getKeyChar();
         if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
             //getToolkit().beep();
@@ -511,65 +523,71 @@ public class ValorTuristico extends javax.swing.JFrame {
     private void txt_1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_1FocusLost
         // TODO add your handling code here:
         try {
-            if(name.compareTo("4")==0)
+            if (name.compareTo("4") == 0) {
                 fe.val1_41 = Integer.parseInt(txt_1.getText());
-            else
+            } else {
                 fe.val1_51 = Integer.parseInt(txt_1.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_1FocusLost
 
     private void txt_2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_2FocusLost
         // TODO add your handling code here:
-           try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_42 = Integer.parseInt(txt_2.getText());
-            else
+            } else {
                 fe.val1_52 = Integer.parseInt(txt_2.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_2FocusLost
 
     private void txt_3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_3FocusLost
         // TODO add your handling code here:
-           try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_43 = Integer.parseInt(txt_3.getText());
-            else
+            } else {
                 fe.val1_53 = Integer.parseInt(txt_3.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_3FocusLost
 
     private void txt_5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusLost
         // TODO add your handling code here:
-            try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_45 = Integer.parseInt(txt_5.getText());
-            else
+            } else {
                 fe.val1_55 = Integer.parseInt(txt_5.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_5FocusLost
 
     private void txt_6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_6FocusLost
         // TODO add your handling code here:
-          try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_46 = Integer.parseInt(txt_6.getText());
-            else
+            } else {
                 fe.val1_56 = Integer.parseInt(txt_6.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_6FocusLost
 
     private void txt_7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_7FocusLost
         // TODO add your handling code here:
-         try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_47 = Integer.parseInt(txt_7.getText());
-            else
+            } else {
                 fe.val1_57 = Integer.parseInt(txt_7.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_7FocusLost
@@ -577,30 +595,34 @@ public class ValorTuristico extends javax.swing.JFrame {
     private void txt_8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_8FocusLost
         // TODO add your handling code here:
         try {
-            fe.val1_48 = Integer.parseInt(txt_8.getText());
+           if (name.compareTo("4") == 0) {
+                fe.val1_48 = Integer.parseInt(txt_8.getText());
+            } else {
+                fe.val1_58 = Integer.parseInt(txt_8.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_8FocusLost
 
     private void txt_9FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_9FocusLost
         // TODO add your handling code here:
-           try {
-            if(name.compareTo("4")==0)
+        try {
+            if (name.compareTo("4") == 0) {
                 fe.val1_49 = Integer.parseInt(txt_9.getText());
-            else
+            } else {
                 fe.val1_59 = Integer.parseInt(txt_9.getText());
+            }
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txt_9FocusLost
 
     private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
         // TODO add your handling code here:
-        if(name.compareTo("4")==0){
+        if (name.compareTo("4") == 0) {
             lbl_vpatrimonial.setText(String.valueOf(fe.vPatrimonio4()));
             lbl_vexplotacion.setText(String.valueOf(fe.vUso4()));
             lbl_total.setText(String.valueOf(fe.vTuristico4()));
-        }else
-        {
+        } else {
             lbl_vpatrimonial.setText(String.valueOf(fe.vPatrimonio5()));
             lbl_vexplotacion.setText(String.valueOf(fe.vUso5()));
             lbl_total.setText(String.valueOf(fe.vTuristico5()));
@@ -614,11 +636,11 @@ public class ValorTuristico extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(name.compareTo("4")==0){
-            fe.val1_4=Math.round(fe.vTuristico4());
+        if (name.compareTo("4") == 0) {
+            fe.val1_4 = Math.round(fe.vTuristico4());
             vi.txt_4.setText(String.valueOf(fe.val1_4));
-        }else{
-            fe.val1_5=Math.round(fe.vTuristico5());
+        } else {
+            fe.val1_5 = Math.round(fe.vTuristico5());
             vi.txt_5.setText(String.valueOf(fe.val1_5));
         }
         this.dispose();
@@ -727,6 +749,14 @@ public class ValorTuristico extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txt_9KeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (name.compareTo("4") == 0)
+            fe.CrearGraficaVS("4");
+        else
+            fe.CrearGraficaVS("5");
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

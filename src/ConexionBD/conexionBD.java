@@ -35,7 +35,11 @@ public class conexionBD {
         "COMENTARIO1_1,COMENTARIO1_2,COMENTARIO1_3,COMENTARIO1_4,COMENTARIO1_5," +
         "COMENTARIO2_1,COMENTARIO2_2,COMENTARIO2_3,COMENTARIO2_4," +
         "COMENTARIO3_1,COMENTARIO3_2,COMENTARIO3_3,COMENTARIO3_4," +
-        "COMENTARIO4_1,COMENTARIO4_2,COMENTARIO4_3,COMENTARIO4_4" +
+        "COMENTARIO4_1,COMENTARIO4_2,COMENTARIO4_3,COMENTARIO4_4,"+ 
+        "CRITERIO1_41,CRITERIO1_42,CRITERIO1_43,CRITERIO1_44,CRITERIO1_45," +
+        "CRITERIO1_46,CRITERIO1_47,CRITERIO1_48,CRITERIO1_49,CRITERIO1_410," +
+        "CRITERIO1_51,CRITERIO1_52,CRITERIO1_53,CRITERIO1_54,CRITERIO1_55," +
+        "CRITERIO1_56,CRITERIO1_57,CRITERIO1_58,CRITERIO1_59,CRITERIO1_510" +
         ") values(?,?,"
                 + "?,?,?,?,?,"
                 + "?,?,?,?,"
@@ -44,7 +48,12 @@ public class conexionBD {
                 + "?,?,?,?,?,"
                 + "?,?,?,?,"
                 + "?,?,?,?,"
-                + "?,?,?,?)";
+                + "?,?,?,?,"
+                + "?,?,?,?,?,"
+                + "?,?,?,?,?,"
+                + "?,?,?,?,?,"
+                + "?,?,?,?,?"
+                + ")";
         PreparedStatement ps=null;
         try {
             ps = getConexion().prepareStatement(query);
@@ -84,10 +93,30 @@ public class conexionBD {
             ps.setString(34,fe.comentario4_2);
             ps.setString(35,fe.comentario4_3);
             ps.setString(36,fe.comentario4_4);
+            ps.setInt(37,fe.val1_41);
+            ps.setInt(38,fe.val1_42);
+            ps.setInt(39,fe.val1_43);
+            ps.setInt(40,fe.val1_44);
+            ps.setInt(41,fe.val1_45);
+            ps.setInt(42,fe.val1_46);
+            ps.setInt(43,fe.val1_47);
+            ps.setInt(44,fe.val1_48);
+            ps.setInt(45,fe.val1_49);
+            ps.setInt(46,fe.val1_410);
+            ps.setInt(47,fe.val1_51);
+            ps.setInt(48,fe.val1_52);
+            ps.setInt(49,fe.val1_53);
+            ps.setInt(50,fe.val1_54);
+            ps.setInt(51,fe.val1_55);
+            ps.setInt(52,fe.val1_56);
+            ps.setInt(53,fe.val1_57);
+            ps.setInt(54,fe.val1_58);
+            ps.setInt(55,fe.val1_59);
+            ps.setInt(56,fe.val1_510);
             
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Municipio Guardado");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -140,6 +169,27 @@ public class conexionBD {
             fe.comentario4_2=rs.getString(36);
             fe.comentario4_3=rs.getString(37);
             fe.comentario4_4=rs.getString(38);
+            fe.val1_41=rs.getInt(39);
+            fe.val1_42=rs.getInt(40);
+            fe.val1_43=rs.getInt(41);
+            fe.val1_44=rs.getInt(42);
+            fe.val1_45=rs.getInt(43);
+            fe.val1_46=rs.getInt(44);
+            fe.val1_47=rs.getInt(45);
+            fe.val1_48=rs.getInt(46);
+            fe.val1_49=rs.getInt(47);
+            fe.val1_410=rs.getInt(48);
+            fe.val1_51=rs.getInt(49);
+            fe.val1_52=rs.getInt(50);
+            fe.val1_53=rs.getInt(51);
+            fe.val1_54=rs.getInt(52);
+            fe.val1_55=rs.getInt(53);
+            fe.val1_56=rs.getInt(54);
+            fe.val1_57=rs.getInt(55);
+            fe.val1_58=rs.getInt(56);
+            fe.val1_59=rs.getInt(57);
+            fe.val1_510=rs.getInt(58);
+            
             ps.close();
                 
         }catch(SQLException e){System.out.println(e.getMessage());}
@@ -183,7 +233,11 @@ public class conexionBD {
         "COMENTARIO1_1=?,COMENTARIO1_2=?,COMENTARIO1_3=?,COMENTARIO1_4=?,COMENTARIO1_5=?," +
         "COMENTARIO2_1=?,COMENTARIO2_2=?,COMENTARIO2_3=?,COMENTARIO2_4=?," +
         "COMENTARIO3_1=?,COMENTARIO3_2=?,COMENTARIO3_3=?,COMENTARIO3_4=?," +
-        "COMENTARIO4_1=?,COMENTARIO4_2=?,COMENTARIO4_3=?,COMENTARIO4_4=? "
+        "COMENTARIO4_1=?,COMENTARIO4_2=?,COMENTARIO4_3=?,COMENTARIO4_4=?,"
+        +"CRITERIO1_41=?,CRITERIO1_42=?,CRITERIO1_43=?,CRITERIO1_44=?,CRITERIO1_45=?,"
+        +"CRITERIO1_46=?,CRITERIO1_47=?,CRITERIO1_48=?,CRITERIO1_49=?,CRITERIO1_410=?,"
+        +"CRITERIO1_51=?,CRITERIO1_52=?,CRITERIO1_53=?,CRITERIO1_54=?,CRITERIO1_55=?,"
+        +"CRITERIO1_56=?,CRITERIO1_57=?,CRITERIO1_58=?,CRITERIO1_59=?,CRITERIO1_510=?"
                      + "where NOMBRE_ESTADO=? and MUNICIPIO=?";
         PreparedStatement ps=null;
         try {
@@ -224,9 +278,29 @@ public class conexionBD {
             ps.setString(34,fe.comentario4_2);
             ps.setString(35,fe.comentario4_3);
             ps.setString(36,fe.comentario4_4);
-            
-            ps.setString(37, estado);
-            ps.setString(38, estado);
+            ps.setInt(37,fe.val1_41);
+            ps.setInt(38,fe.val1_42);
+            ps.setInt(39,fe.val1_43);
+            ps.setInt(40,fe.val1_44);
+            ps.setInt(41,fe.val1_45);
+            ps.setInt(42,fe.val1_46);
+            ps.setInt(43,fe.val1_47);
+            ps.setInt(44,fe.val1_48);
+            ps.setInt(45,fe.val1_49);
+            ps.setInt(46,fe.val1_410);
+            ps.setInt(47,fe.val1_51);
+            ps.setInt(48,fe.val1_52);
+            ps.setInt(49,fe.val1_53);
+            ps.setInt(50,fe.val1_54);
+            ps.setInt(51,fe.val1_55);
+            ps.setInt(52,fe.val1_56);
+            ps.setInt(53,fe.val1_57);
+            ps.setInt(54,fe.val1_58);
+            ps.setInt(55,fe.val1_59);
+            ps.setInt(56,fe.val1_510);
+     
+            ps.setString(57, estado);
+            ps.setString(58, municipio);
             
             ps.executeUpdate();
             ps.close();
