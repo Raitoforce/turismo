@@ -309,4 +309,14 @@ public class conexionBD {
             System.out.println(ex.getMessage());
         }
     }
+    
+   public void BorrarM(String estado, String municipio){
+        try{
+            PreparedStatement ps=getConexion().prepareStatement("DELETE FROM TABLA_MUNICIPIOS where nombre_estado=? and municipio=?");
+            ps.setString(1, estado);
+            ps.setString(2,municipio);
+            ps.execute();
+            JOptionPane.showMessageDialog(null,municipio+" Ha sido Eliminado con Exito");
+        }catch(SQLException e){System.out.println(e.getMessage());}
+   }
 }

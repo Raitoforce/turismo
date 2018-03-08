@@ -11,7 +11,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
@@ -262,6 +261,7 @@ public class FuncionesEvaluacion {
         ventana.getContentPane().add(panel);
         ventana.pack();
         ventana.setVisible(true);
+        ventana.setLocation(600,50);
         //return  ventana;
     }
 
@@ -314,13 +314,16 @@ public class FuncionesEvaluacion {
         });
         ventana.getContentPane().add(panel);
         ventana.pack();
+        ventana.setLocation(600,50);
         ventana.setVisible(true);
+        ventana.setAlwaysOnTop(true);
         //return  ventana;
     }
 
     public void MostrarResultado() {
         VentanaR vr = new VentanaR(this);
-        vr.setAlwaysOnTop(true);
+        //vr.setAlwaysOnTop(true);
+        vr.setLocation(100,20);
         vr.pack();
         vr.setVisible(true);
     }

@@ -49,6 +49,7 @@ public class ValorTuristico extends javax.swing.JFrame {
         this.fe = fe;
         this.vi = vi;
         this.name = name;
+        this.txt_1.requestFocusInWindow();
         this.Refrescar();
         this.setLocationRelativeTo(null);
         this.setAlwaysOnTop(true);

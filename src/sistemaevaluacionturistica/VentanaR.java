@@ -5,29 +5,38 @@
  */
 package sistemaevaluacionturistica;
 
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Usuario
  */
 public class VentanaR extends javax.swing.JFrame {
+
     /**
      * Creates new form VentanaR
      */
-    public FuncionesEvaluacion fe=null;
-    public static boolean vg=false;
-    
-    public void asignarValores(){
+    public FuncionesEvaluacion fe = null;
+    public static boolean vg = false;
+
+    public void asignarValores() {
         lbl1_1.setText(String.valueOf(fe.val1_1));
         lbl1_2.setText(String.valueOf(fe.val1_2));
         lbl1_3.setText(String.valueOf(fe.val1_3));
         lbl1_4.setText(String.valueOf(fe.val1_4));
         lbl1_5.setText(String.valueOf(fe.val1_5));
-        
+
         lbl2_1.setText(String.valueOf(fe.val2_1));
         lbl2_2.setText(String.valueOf(fe.val2_2));
         lbl2_3.setText(String.valueOf(fe.val2_3));
         lbl2_4.setText(String.valueOf(fe.val2_4));
-        
+
         lbl2_1.setText(String.valueOf(fe.val2_1));
         lbl2_2.setText(String.valueOf(fe.val2_2));
         lbl2_3.setText(String.valueOf(fe.val2_3));
@@ -37,30 +46,31 @@ public class VentanaR extends javax.swing.JFrame {
         lbl3_2.setText(String.valueOf(fe.val3_2));
         lbl3_3.setText(String.valueOf(fe.val3_3));
         lbl3_4.setText(String.valueOf(fe.val3_4));
-        
+
         lbl4_1.setText(String.valueOf(fe.val4_1));
         lbl4_2.setText(String.valueOf(fe.val4_2));
         lbl4_3.setText(String.valueOf(fe.val4_3));
         lbl4_4.setText(String.valueOf(fe.val4_4));
-        
-        t1.setText(String.valueOf(fe.val1_1+fe.val1_2+fe.val1_3+fe.val1_4+fe.val1_5));
-        t2.setText(String.valueOf(fe.val2_1+fe.val2_2+fe.val2_3+fe.val2_4));
-        t3.setText(String.valueOf(fe.val3_1+fe.val3_2+fe.val3_3+fe.val3_4));
-        t4.setText(String.valueOf(fe.val4_1+fe.val4_2+fe.val4_3+fe.val4_4));
-        
+
+        t1.setText(String.valueOf(fe.val1_1 + fe.val1_2 + fe.val1_3 + fe.val1_4 + fe.val1_5));
+        t2.setText(String.valueOf(fe.val2_1 + fe.val2_2 + fe.val2_3 + fe.val2_4));
+        t3.setText(String.valueOf(fe.val3_1 + fe.val3_2 + fe.val3_3 + fe.val3_4));
+        t4.setText(String.valueOf(fe.val4_1 + fe.val4_2 + fe.val4_3 + fe.val4_4));
+
         p1.setText(String.valueOf(fe.P1()));
         p2.setText(String.valueOf(fe.P2()));
         p3.setText(String.valueOf(fe.P3()));
         p4.setText(String.valueOf(fe.P4()));
-        
+
         lbl_resultadofinal.setText(String.valueOf(fe.Ptotal()));
     }
-    
+
     public VentanaR(FuncionesEvaluacion fe) {
         initComponents();
-        this.fe=fe;
+        this.fe = fe;
         asignarValores();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -451,6 +461,11 @@ public class VentanaR extends javax.swing.JFrame {
         });
 
         jButton2.setText("PDF");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Grafica");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -495,19 +510,47 @@ public class VentanaR extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        if(!vg){    
+        if (!vg) {
             fe.CrearGrafica();
-            vg=true;
+            vg = true;
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        VentanaInicio.vro=false;
+        VentanaInicio.vro = false;
     }//GEN-LAST:event_formWindowClosed
-    
-    
-    
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int resultado;
+
+        CargarFoto ventana = new CargarFoto();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("PDF", "pdf");
+        ventana.jcargafoto.setFileFilter(filtro);
+        ventana.jcargafoto.setApproveButtonText("Guardar");
+        ventana.setAlwaysOnTop(true);
+        resultado = ventana.jcargafoto.showOpenDialog(null);
+        try {
+            if (JFileChooser.APPROVE_OPTION == resultado) {
+                File f = ventana.jcargafoto.getSelectedFile();
+                String PATH = f.getAbsolutePath();
+
+                if (!(PATH.endsWith(".pdf"))) {
+                    File temp = new File(PATH + ".pdf");
+                    f.renameTo(temp);
+                    PATH = temp.getAbsolutePath();
+                }
+                //Crear PDF
+                GenerarPDF gpdf=new GenerarPDF(PATH, fe);
+                gpdf.nuevo();
+                JOptionPane.showMessageDialog(null, "PDF Creado en "+PATH);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error al Crear PDF " + ex);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Botones;

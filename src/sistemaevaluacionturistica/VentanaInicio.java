@@ -165,6 +165,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         menuNuevo = new javax.swing.JMenuItem();
         menuAbrir = new javax.swing.JMenuItem();
         menuGuardar = new javax.swing.JMenuItem();
+        menuBorrar = new javax.swing.JMenuItem();
         menuCerrar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
@@ -1180,6 +1181,14 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jMenu1.add(menuGuardar);
 
+        menuBorrar.setText("Borrar");
+        menuBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBorrarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuBorrar);
+
         menuCerrar.setText("Cerrar");
         menuCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2014,6 +2023,14 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_5FocusGained
 
+    private void menuBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarActionPerformed
+        // TODO add your handling code here:
+         if (!vro || !vco) {
+            VentanaBorrar vb = new VentanaBorrar(this,fe);
+            vb.setVisible(true);
+        }
+    }//GEN-LAST:event_menuBorrarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Calcular;
     private javax.swing.JButton btn_ayuda11;
@@ -2107,6 +2124,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField lbl_estado;
     private javax.swing.JTextField lbl_municipio;
     private javax.swing.JMenuItem menuAbrir;
+    private javax.swing.JMenuItem menuBorrar;
     private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuGuardar;
     private javax.swing.JMenuItem menuNuevo;
