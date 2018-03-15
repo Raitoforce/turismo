@@ -4,6 +4,7 @@ import sistemaevaluacionturistica.FuncionesEvaluacion;
 
 import java.sql.*;
 import javax.swing.JOptionPane;
+import sistemaevaluacionturistica.Recursos;
 
 public class conexionBD {
     
@@ -35,11 +36,7 @@ public class conexionBD {
         "COMENTARIO1_1,COMENTARIO1_2,COMENTARIO1_3,COMENTARIO1_4,COMENTARIO1_5," +
         "COMENTARIO2_1,COMENTARIO2_2,COMENTARIO2_3,COMENTARIO2_4," +
         "COMENTARIO3_1,COMENTARIO3_2,COMENTARIO3_3,COMENTARIO3_4," +
-        "COMENTARIO4_1,COMENTARIO4_2,COMENTARIO4_3,COMENTARIO4_4,"+ 
-        "CRITERIO1_41,CRITERIO1_42,CRITERIO1_43,CRITERIO1_44,CRITERIO1_45," +
-        "CRITERIO1_46,CRITERIO1_47,CRITERIO1_48,CRITERIO1_49,CRITERIO1_410," +
-        "CRITERIO1_51,CRITERIO1_52,CRITERIO1_53,CRITERIO1_54,CRITERIO1_55," +
-        "CRITERIO1_56,CRITERIO1_57,CRITERIO1_58,CRITERIO1_59,CRITERIO1_510" +
+        "COMENTARIO4_1,COMENTARIO4_2,COMENTARIO4_3,COMENTARIO4_4"+ 
         ") values(?,?,"
                 + "?,?,?,?,?,"
                 + "?,?,?,?,"
@@ -48,11 +45,7 @@ public class conexionBD {
                 + "?,?,?,?,?,"
                 + "?,?,?,?,"
                 + "?,?,?,?,"
-                + "?,?,?,?,"
-                + "?,?,?,?,?,"
-                + "?,?,?,?,?,"
-                + "?,?,?,?,?,"
-                + "?,?,?,?,?"
+                + "?,?,?,?"
                 + ")";
         PreparedStatement ps=null;
         try {
@@ -93,28 +86,54 @@ public class conexionBD {
             ps.setString(34,fe.comentario4_2);
             ps.setString(35,fe.comentario4_3);
             ps.setString(36,fe.comentario4_4);
-            ps.setInt(37,fe.val1_41);
-            ps.setInt(38,fe.val1_42);
-            ps.setInt(39,fe.val1_43);
-            ps.setInt(40,fe.val1_44);
-            ps.setInt(41,fe.val1_45);
-            ps.setInt(42,fe.val1_46);
-            ps.setInt(43,fe.val1_47);
-            ps.setInt(44,fe.val1_48);
-            ps.setInt(45,fe.val1_49);
-            ps.setInt(46,fe.val1_410);
-            ps.setInt(47,fe.val1_51);
-            ps.setInt(48,fe.val1_52);
-            ps.setInt(49,fe.val1_53);
-            ps.setInt(50,fe.val1_54);
-            ps.setInt(51,fe.val1_55);
-            ps.setInt(52,fe.val1_56);
-            ps.setInt(53,fe.val1_57);
-            ps.setInt(54,fe.val1_58);
-            ps.setInt(55,fe.val1_59);
-            ps.setInt(56,fe.val1_510);
             
             ps.executeUpdate();
+            ps.close();
+           //GuardarRecursos
+           query="INSERT INTO RECURSOCULTURAL("
+                   + "NOMBRE,TIPO,"
+                   + "CRITERIO1,CRITERIO2,CRITERIO3,CRITERIO4,CRITERIO5,"
+                   + "CRITERIO6,CRITERIO7,CRITERIO8,CRITERIO9,CRITERIO10,"
+                   + "IDMUNICIPIO)"
+                   + "VALUES("
+                   + "?,?,"
+                   + "?,?,?,?,?,"
+                   + "?,?,?,?,?,"
+                   + "?)";
+            for (Recursos recurso : fe.recursosNaturales) {
+                ps=getConexion().prepareStatement(query);
+                ps.setString(1,recurso.getNombre());
+                ps.setInt(2,1);
+                ps.setInt(3,recurso.getCriterio1());
+                ps.setInt(4,recurso.getCriterio2());
+                ps.setInt(5,recurso.getCriterio3());
+                ps.setInt(6,recurso.getCriterio4());
+                ps.setInt(7,recurso.getCriterio5());
+                ps.setInt(8,recurso.getCriterio6());
+                ps.setInt(9,recurso.getCriterio7());
+                ps.setInt(10,recurso.getCriterio8());
+                ps.setInt(11,recurso.getCriterio9());
+                ps.setInt(12,recurso.getCriterio10());
+                ps.setInt(13,index(fe.estado,fe.municipio));
+                ps.executeUpdate();
+            }
+            for (Recursos recurso : fe.recursosCulturales) {
+                ps=getConexion().prepareStatement(query);
+                ps.setString(1,recurso.getNombre());
+                ps.setInt(2,2);
+                ps.setInt(3,recurso.getCriterio1());
+                ps.setInt(4,recurso.getCriterio2());
+                ps.setInt(5,recurso.getCriterio3());
+                ps.setInt(6,recurso.getCriterio4());
+                ps.setInt(7,recurso.getCriterio5());
+                ps.setInt(8,recurso.getCriterio6());
+                ps.setInt(9,recurso.getCriterio7());
+                ps.setInt(10,recurso.getCriterio8());
+                ps.setInt(11,recurso.getCriterio9());
+                ps.setInt(12,recurso.getCriterio10());
+                ps.setInt(13,index(fe.estado,fe.municipio));
+                ps.executeUpdate();
+            }
             ps.close();
             JOptionPane.showMessageDialog(null, "Municipio Guardado");
         } catch (SQLException ex) {
@@ -123,6 +142,7 @@ public class conexionBD {
     }
     
     public void Abrir(String estado,String municipio){
+        
        ResultSet rs=null;
         try{
             PreparedStatement ps=getConexion().prepareStatement("select * from TABLA_MUNICIPIOS where nombre_estado=? and municipio=?");
@@ -169,39 +189,31 @@ public class conexionBD {
             fe.comentario4_2=rs.getString(36);
             fe.comentario4_3=rs.getString(37);
             fe.comentario4_4=rs.getString(38);
-            fe.val1_41=rs.getInt(39);
-            fe.val1_42=rs.getInt(40);
-            fe.val1_43=rs.getInt(41);
-            fe.val1_44=rs.getInt(42);
-            fe.val1_45=rs.getInt(43);
-            fe.val1_46=rs.getInt(44);
-            fe.val1_47=rs.getInt(45);
-            fe.val1_48=rs.getInt(46);
-            fe.val1_49=rs.getInt(47);
-            fe.val1_410=rs.getInt(48);
-            fe.val1_51=rs.getInt(49);
-            fe.val1_52=rs.getInt(50);
-            fe.val1_53=rs.getInt(51);
-            fe.val1_54=rs.getInt(52);
-            fe.val1_55=rs.getInt(53);
-            fe.val1_56=rs.getInt(54);
-            fe.val1_57=rs.getInt(55);
-            fe.val1_58=rs.getInt(56);
-            fe.val1_59=rs.getInt(57);
-            fe.val1_510=rs.getInt(58);
+            ps.close();
             
+            fe.recursosCulturales.clear();
+            fe.recursosNaturales.clear();
+            ps=getConexion().prepareStatement("select * from RECURSOCULTURAL where idmunicipio=?");
+            ps.setInt(1,index(fe.estado, fe.municipio));
+            rs=ps.executeQuery();
+            Recursos recurso;
+            while(rs.next()){
+                recurso=new Recursos();
+                recurso.setNombre(rs.getString(2));
+                recurso.setCriterio1(rs.getInt(4));
+                recurso.setCriterio2(rs.getInt(5));
+                recurso.setCriterio3(rs.getInt(6));
+                recurso.setCriterio4(rs.getInt(7));
+                recurso.setCriterio5(rs.getInt(8));
+                recurso.setCriterio6(rs.getInt(9));
+                recurso.setCriterio7(rs.getInt(10));
+                recurso.setCriterio8(rs.getInt(11));
+                recurso.setCriterio9(rs.getInt(12));
+                recurso.setCriterio10(rs.getInt(13));
+                if(rs.getInt(3)==1)fe.recursosNaturales.add(recurso);
+                else fe.recursosCulturales.add(recurso);
+            }
             ps.close();
-                
-        }catch(SQLException e){System.out.println(e.getMessage());}
-    }
-    
-    public void BorrarBD(){
-        try{
-            Statement ps=getConexion().createStatement();
-            ps.clearBatch();
-            ps.execute("TRUNCATE TABLE TABLA_MUNICIPIOS");
-            ps.close();
-            JOptionPane.showMessageDialog(null,"Base de datos Eliminada");
         }catch(SQLException e){System.out.println(e.getMessage());}
     }
     
@@ -224,6 +236,23 @@ public class conexionBD {
         return band;
     }
     
+    public int index(String estado, String municipio){
+        int index=-1;
+        ResultSet rs=null;
+        try{
+            PreparedStatement ps=getConexion().prepareStatement("select ID from TABLA_MUNICIPIOS where nombre_estado=? and municipio=?");
+            ps.setString(1,estado);
+            ps.setString(2,municipio);
+            rs=ps.executeQuery();
+            rs.next();
+                    
+            index=rs.getInt(1);
+            ps.close();
+        }catch(SQLException e){//System.out.println(e.getMessage());
+        }
+        return index;
+    }
+    
     public void Actualizar(String estado, String municipio){
              String query="UPDATE TABLA_MUNICIPIOS SET NOMBRE_ESTADO=?,MUNICIPIO=?," +
         "CRITERIO1_1=?,CRITERIO1_2=?,CRITERIO1_3=?,CRITERIO1_4=?,CRITERIO1_5=?," +
@@ -233,11 +262,7 @@ public class conexionBD {
         "COMENTARIO1_1=?,COMENTARIO1_2=?,COMENTARIO1_3=?,COMENTARIO1_4=?,COMENTARIO1_5=?," +
         "COMENTARIO2_1=?,COMENTARIO2_2=?,COMENTARIO2_3=?,COMENTARIO2_4=?," +
         "COMENTARIO3_1=?,COMENTARIO3_2=?,COMENTARIO3_3=?,COMENTARIO3_4=?," +
-        "COMENTARIO4_1=?,COMENTARIO4_2=?,COMENTARIO4_3=?,COMENTARIO4_4=?,"
-        +"CRITERIO1_41=?,CRITERIO1_42=?,CRITERIO1_43=?,CRITERIO1_44=?,CRITERIO1_45=?,"
-        +"CRITERIO1_46=?,CRITERIO1_47=?,CRITERIO1_48=?,CRITERIO1_49=?,CRITERIO1_410=?,"
-        +"CRITERIO1_51=?,CRITERIO1_52=?,CRITERIO1_53=?,CRITERIO1_54=?,CRITERIO1_55=?,"
-        +"CRITERIO1_56=?,CRITERIO1_57=?,CRITERIO1_58=?,CRITERIO1_59=?,CRITERIO1_510=?"
+        "COMENTARIO4_1=?,COMENTARIO4_2=?,COMENTARIO4_3=?,COMENTARIO4_4=?"
                      + "where NOMBRE_ESTADO=? and MUNICIPIO=?";
         PreparedStatement ps=null;
         try {
@@ -278,32 +303,59 @@ public class conexionBD {
             ps.setString(34,fe.comentario4_2);
             ps.setString(35,fe.comentario4_3);
             ps.setString(36,fe.comentario4_4);
-            ps.setInt(37,fe.val1_41);
-            ps.setInt(38,fe.val1_42);
-            ps.setInt(39,fe.val1_43);
-            ps.setInt(40,fe.val1_44);
-            ps.setInt(41,fe.val1_45);
-            ps.setInt(42,fe.val1_46);
-            ps.setInt(43,fe.val1_47);
-            ps.setInt(44,fe.val1_48);
-            ps.setInt(45,fe.val1_49);
-            ps.setInt(46,fe.val1_410);
-            ps.setInt(47,fe.val1_51);
-            ps.setInt(48,fe.val1_52);
-            ps.setInt(49,fe.val1_53);
-            ps.setInt(50,fe.val1_54);
-            ps.setInt(51,fe.val1_55);
-            ps.setInt(52,fe.val1_56);
-            ps.setInt(53,fe.val1_57);
-            ps.setInt(54,fe.val1_58);
-            ps.setInt(55,fe.val1_59);
-            ps.setInt(56,fe.val1_510);
      
-            ps.setString(57, estado);
-            ps.setString(58, municipio);
+            ps.setString(37, estado);
+            ps.setString(38, municipio);
             
             ps.executeUpdate();
             ps.close();
+            //System.out.println("GuardadoM");
+            //Recursos
+            
+            query="UPDATE RECURSOCULTURAL SET "+
+            "CRITERIO1=?,CRITERIO2=?,CRITERIO3=?,CRITERIO4=?,CRITERIO5=?," +
+            "CRITERIO6=?,CRITERIO7=?,CRITERIO8=?,CRITERIO9=?,CRITERIO10=? "
+                     + "where IDMUNICIPIO=? and NOMBRE=? and TIPO=?";
+            
+            for (Recursos recurso : fe.recursosNaturales){
+                ps = getConexion().prepareStatement(query);
+                ps.setInt(1,recurso.getCriterio1());
+                ps.setInt(2,recurso.getCriterio2());
+                ps.setInt(3,recurso.getCriterio3());
+                ps.setInt(4,recurso.getCriterio4());
+                ps.setInt(5,recurso.getCriterio5());
+                ps.setInt(6,recurso.getCriterio6());
+                ps.setInt(7,recurso.getCriterio7());
+                ps.setInt(8,recurso.getCriterio8());
+                ps.setInt(9,recurso.getCriterio9());
+                ps.setInt(10,recurso.getCriterio10());
+                ps.setInt(11,index(fe.estado,fe.municipio));
+                ps.setString(12,recurso.getNombre());
+                ps.setInt(13,1);
+                ps.executeUpdate();
+                ps.close();
+                //System.out.println("GuardadoRN");
+            }
+            
+            for (Recursos recurso : fe.recursosCulturales){
+                ps = getConexion().prepareStatement(query);
+                ps.setInt(1,recurso.getCriterio1());
+                ps.setInt(2,recurso.getCriterio2());
+                ps.setInt(3,recurso.getCriterio3());
+                ps.setInt(4,recurso.getCriterio4());
+                ps.setInt(5,recurso.getCriterio5());
+                ps.setInt(6,recurso.getCriterio6());
+                ps.setInt(7,recurso.getCriterio7());
+                ps.setInt(8,recurso.getCriterio8());
+                ps.setInt(9,recurso.getCriterio9());
+                ps.setInt(10,recurso.getCriterio10());
+                ps.setInt(11,index(estado, municipio));
+                ps.setString(12,recurso.getNombre());
+                ps.setInt(13,2);
+                ps.executeUpdate();
+                ps.close();
+                //System.out.println("GuardadoRC");
+            }
             
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -316,6 +368,11 @@ public class conexionBD {
             ps.setString(1, estado);
             ps.setString(2,municipio);
             ps.execute();
+            
+            ps=getConexion().prepareStatement("DELETE FROM RECURSOCULTURAL where idmunicipio=?");
+            ps.setInt(1,index(fe.estado, fe.municipio));
+            ps.execute();
+            
             JOptionPane.showMessageDialog(null,municipio+" Ha sido Eliminado con Exito");
         }catch(SQLException e){System.out.println(e.getMessage());}
    }

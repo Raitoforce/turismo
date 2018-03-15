@@ -8,9 +8,10 @@ import ConexionBD.conexionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
         
-public class VentanaAbrir extends javax.swing.JFrame {
+public class VentanaAbrir extends javax.swing.JDialog {
 
     private FuncionesEvaluacion fe;
     public VentanaInicio vi;
@@ -37,7 +38,6 @@ public class VentanaAbrir extends javax.swing.JFrame {
         try{
             PreparedStatement ps=bd.getConexion().prepareStatement("select distinct nombre_estado from TABLA_MUNICIPIOS");
             rs=ps.executeQuery();
-            
             while(rs.next()){                
                 boxEstado.addItem(rs.getString(1));
                 //System.out.println(rs.getString(1));
@@ -46,11 +46,14 @@ public class VentanaAbrir extends javax.swing.JFrame {
     }
    
     public VentanaAbrir(FuncionesEvaluacion fe,VentanaInicio vi) {
+        super(vi);
         initComponents();
         this.fe=fe;
         this.vi=vi;
         llenarEstados();
         this.setLocationRelativeTo(null);
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        //setVisible(true);
     }
     
     @SuppressWarnings("unchecked")

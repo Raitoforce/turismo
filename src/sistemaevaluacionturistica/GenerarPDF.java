@@ -13,11 +13,15 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Font;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import org.jfree.chart.ChartUtilities;
 
 public class GenerarPDF {
     String PATH;
@@ -130,6 +134,21 @@ public class GenerarPDF {
         tabla.setWidths(medidaCeldas);
         
         documento.add(tabla);
+        
+        documento.newPage();
+         try {
+            BufferedImage bufferedImage = fe.grafica().createBufferedImage(500, 290);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "png", baos);
+            Image foto=Image.getInstance(baos.toByteArray());
+            foto.scaleToFit(500, 290);
+            foto.setAlignment(Chunk.ALIGN_MIDDLE);
+	documento.add(foto);
+        } catch (BadElementException ex) {
+            Logger.getLogger(GenerarPDF.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GenerarPDF.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
        
        //Cierre

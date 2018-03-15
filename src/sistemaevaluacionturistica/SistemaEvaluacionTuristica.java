@@ -23,7 +23,7 @@ public class SistemaEvaluacionTuristica {
         } catch (Exception ex) { 
             ex.printStackTrace();
         }
-
+        
         VentanaInicio vi=new VentanaInicio();
         vi.setVisible(true);
     }

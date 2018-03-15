@@ -17,7 +17,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Usuario
  */
-public class VentanaR extends javax.swing.JFrame {
+public class VentanaR extends javax.swing.JDialog {
 
     /**
      * Creates new form VentanaR
@@ -69,6 +69,7 @@ public class VentanaR extends javax.swing.JFrame {
         initComponents();
         this.fe = fe;
         asignarValores();
+        this.setModal(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -511,8 +512,8 @@ public class VentanaR extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if (!vg) {
-            fe.CrearGrafica();
             vg = true;
+            fe.CrearGrafica(this);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

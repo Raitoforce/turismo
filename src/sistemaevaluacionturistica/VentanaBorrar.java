@@ -9,10 +9,11 @@ import ConexionBD.conexionBD;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
-public class VentanaBorrar extends javax.swing.JFrame {
+public class VentanaBorrar extends javax.swing.JDialog{
 
     FuncionesEvaluacion fe;
     VentanaInicio vi=null;
@@ -48,11 +49,14 @@ public class VentanaBorrar extends javax.swing.JFrame {
    
     
     public VentanaBorrar(VentanaInicio vi,FuncionesEvaluacion fe) {
+        super(vi);
         this.vi=vi;
         this.fe=fe;
         initComponents();
         llenarEstados();
         this.setLocationRelativeTo(null);
+        setModalityType(ModalityType.APPLICATION_MODAL);
+        //setVisible(true);
     }
 
     /**

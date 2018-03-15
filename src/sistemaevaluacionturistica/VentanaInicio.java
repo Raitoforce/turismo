@@ -6,6 +6,7 @@
 package sistemaevaluacionturistica;
 
 import ConexionBD.conexionBD;
+import java.awt.Dialog;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.File;
@@ -167,6 +168,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         menuGuardar = new javax.swing.JMenuItem();
         menuBorrar = new javax.swing.JMenuItem();
         menuCerrar = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        menuRecursosNaturales = new javax.swing.JMenuItem();
+        menuRecursosCulturales = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -365,33 +369,30 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_3.setColumns(3);
         txt_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_3.setNextFocusableComponent(txt_6);
         txt_3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_3FocusLost(evt);
             }
         });
         txt_3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txt_3KeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_3KeyTyped(evt);
             }
         });
+        txt_3.setFocusTraversalKeysEnabled(false);
         jPanel18.add(txt_3);
 
         txt_4.setEditable(false);
         txt_4.setColumns(3);
         txt_4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txt_4.setName("4"); // NOI18N
-        txt_4.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_4FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_4FocusLost(evt);
-            }
-        });
-        txt_4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_4KeyTyped(evt);
+        txt_4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_4MouseClicked(evt);
             }
         });
         jPanel18.add(txt_4);
@@ -399,20 +400,9 @@ public class VentanaInicio extends javax.swing.JFrame {
         txt_5.setEditable(false);
         txt_5.setColumns(3);
         txt_5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txt_5.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txt_5FocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txt_5FocusLost(evt);
-            }
-        });
-        txt_5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txt_5KeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txt_5KeyTyped(evt);
+        txt_5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txt_5MouseClicked(evt);
             }
         });
         txt_5.setFocusTraversalKeysEnabled(false);
@@ -1199,6 +1189,26 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu3.setText("Recursos");
+
+        menuRecursosNaturales.setText("Naturales");
+        menuRecursosNaturales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRecursosNaturalesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuRecursosNaturales);
+
+        menuRecursosCulturales.setText("Culturales");
+        menuRecursosCulturales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuRecursosCulturalesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuRecursosCulturales);
+
+        jMenuBar1.add(jMenu3);
+
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1283,39 +1293,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btn_coment_11ActionPerformed
-
-    private void txt_5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_5KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_5.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_5KeyTyped
-
-    private void txt_5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_5KeyPressed
-        // TODO add your handling code here:
-        if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
-            try {
-                fe.val1_5 = Integer.parseInt(txt_5.getText());
-            } catch (Exception e) {
-            }
-            jTabbedPane2.setSelectedIndex(1);
-            txt_6.requestFocus();
-        }
-    }//GEN-LAST:event_txt_5KeyPressed
-
-    private void txt_5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusLost
-        // TODO add your handling code here:
-        try {
-            fe.val1_5 = Integer.parseInt(txt_5.getText());
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_5FocusLost
 
     private void txt_1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_1KeyTyped
         // TODO add your handling code here:
@@ -1836,14 +1813,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_3FocusLost
 
-    private void txt_4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_4FocusLost
-        // TODO add your handling code here:
-        try {
-            fe.val1_4 = Integer.parseInt(txt_4.getText());
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_4FocusLost
-
     private void txt_6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_6FocusLost
         // TODO add your handling code here:
         try {
@@ -1934,19 +1903,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_3KeyTyped
 
-    private void txt_4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_4KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_4.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_4KeyTyped
-
     private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -1991,38 +1947,6 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_menuGuardarActionPerformed
 
-    private void txt_4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_4FocusGained
-        // TODO add your handling code here:
-        if (!vro && !vco) {
-            ValorTuristico vt = new ValorTuristico(fe, this, "4");
-            vt.setVisible(true);
-            try {
-                Thread.sleep(10);
-            } catch (Exception e) {
-            }
-            txt_5.requestFocus();
-            vt.requestFocus();
-            vco = true;
-            vro = true;
-        }
-    }//GEN-LAST:event_txt_4FocusGained
-
-    private void txt_5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusGained
-        // TODO add your handling code here:
-          if (!vro && !vco) {
-            ValorTuristico vt = new ValorTuristico(fe, this, "5");
-            vt.setVisible(true);
-            try {
-                Thread.sleep(10);
-            } catch (Exception e) {
-            }
-            txt_5.requestFocus();
-            vt.requestFocus();
-            vco = true;
-            vro = true;
-        }
-    }//GEN-LAST:event_txt_5FocusGained
-
     private void menuBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBorrarActionPerformed
         // TODO add your handling code here:
          if (!vro || !vco) {
@@ -2030,6 +1954,42 @@ public class VentanaInicio extends javax.swing.JFrame {
             vb.setVisible(true);
         }
     }//GEN-LAST:event_menuBorrarActionPerformed
+
+    private void menuRecursosNaturalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRecursosNaturalesActionPerformed
+        // TODO add your handling code here:
+        VentanaRecursos recurso=new VentanaRecursos(fe,"4",this);
+        recurso.setVisible(true);
+    }//GEN-LAST:event_menuRecursosNaturalesActionPerformed
+
+    private void menuRecursosCulturalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRecursosCulturalesActionPerformed
+        // TODO add your handling code here:
+        VentanaRecursos recurso=new VentanaRecursos(fe,"5",this);
+        recurso.setVisible(true);
+    }//GEN-LAST:event_menuRecursosCulturalesActionPerformed
+
+    private void txt_4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_4MouseClicked
+        // TODO add your handling code here:
+        VentanaRecursos recurso=new VentanaRecursos(fe,"4",this);
+        recurso.setVisible(true);
+    }//GEN-LAST:event_txt_4MouseClicked
+
+    private void txt_5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_5MouseClicked
+        // TODO add your handling code here:
+        VentanaRecursos recurso=new VentanaRecursos(fe,"5",this);
+        recurso.setVisible(true);
+    }//GEN-LAST:event_txt_5MouseClicked
+
+    private void txt_3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_3KeyPressed
+        // TODO add your handling code here:
+         if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
+            try {
+                fe.val1_3 = Integer.parseInt(txt_3.getText());
+            } catch (Exception e) {
+            }
+            jTabbedPane2.setSelectedIndex(1);
+            txt_6.requestFocus();
+        }
+    }//GEN-LAST:event_txt_3KeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Calcular;
@@ -2071,6 +2031,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
@@ -2128,6 +2089,8 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuGuardar;
     private javax.swing.JMenuItem menuNuevo;
+    private javax.swing.JMenuItem menuRecursosCulturales;
+    private javax.swing.JMenuItem menuRecursosNaturales;
     private javax.swing.JTextField txt_1;
     private javax.swing.JTextField txt_10;
     private javax.swing.JTextField txt_11;

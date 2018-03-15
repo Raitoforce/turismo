@@ -1,13 +1,44 @@
 package sistemaevaluacionturistica;
 
 import java.awt.event.KeyEvent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-public class ValorTuristico extends javax.swing.JFrame {
+public class ValorTuristico extends javax.swing.JDialog {
 
     FuncionesEvaluacion fe;
-    VentanaInicio vi;
     String name;
+    int seleccionado=0;
+    int val1=-1,val2=-1,val3=-1,val4=-1,val5=-1,val6=-1,val7=-1,val8=-1,val9=-1,val10=-1;
+    private final VentanaRecursos vr;
+    
+    public float vPatrimonio(){
+        return (float) (((float) val1 * 0.4) + ((float) val2 * 0.3) + ((float) val3 * 0.1) + ((float) val4 * 0.2));
+    }
+    
+    public float vUso() {
+        return (float) (((float) val5 * 0.1) + ((float) val6 * 0.1) + ((float) val7 * 0.2) + ((float) val8 * 0.3) + ((float) val9 * 0.2) + ((float) val10 * 0.1));
+    }
+    
+    public float vTuristico() {
+        return (float) ((vPatrimonio() * 0.55) + (vUso() * 0.45));
+    }
+    
+    public boolean checar(){
+        boolean band= true;
+        if(val1==-1) band=false;
+        if(val2==-1) band=false;
+        if(val3==-1) band=false;
+        if(val4==-1) band=false;
+        if(val5==-1) band=false;
+        if(val6==-1) band=false;
+        if(val7==-1) band=false;
+        if(val8==-1) band=false;
+        if(val9==-1) band=false;
+        if(val10==-1) band=false;
+        return band;
+    }
 
     public void FormatoCampo(JTextField txt, int contenido) {
         if (contenido != -1) {
@@ -17,42 +48,84 @@ public class ValorTuristico extends javax.swing.JFrame {
         }
     }
 
-    public void Refrescar() {
-        if (name.compareTo("4") == 0) {
-            FormatoCampo(txt_1, fe.val1_41);
-            FormatoCampo(txt_2, fe.val1_42);
-            FormatoCampo(txt_3, fe.val1_43);
-            FormatoCampo(txt_4, fe.val1_44);
-            FormatoCampo(txt_5, fe.val1_45);
-            FormatoCampo(txt_6, fe.val1_46);
-            FormatoCampo(txt_7, fe.val1_47);
-            FormatoCampo(txt_8, fe.val1_48);
-            FormatoCampo(txt_9, fe.val1_49);
-            FormatoCampo(txt_10, fe.val1_410);
-        } else {
-            FormatoCampo(txt_1, fe.val1_51);
-            FormatoCampo(txt_2, fe.val1_52);
-            FormatoCampo(txt_3, fe.val1_53);
-            FormatoCampo(txt_4, fe.val1_54);
-            FormatoCampo(txt_5, fe.val1_55);
-            FormatoCampo(txt_6, fe.val1_56);
-            FormatoCampo(txt_7, fe.val1_57);
-            FormatoCampo(txt_8, fe.val1_58);
-            FormatoCampo(txt_9, fe.val1_59);
-            FormatoCampo(txt_10, fe.val1_510);
+    public void Refrescar(){
+        try{
+            if (name.compareTo("4") == 0){
+                val1=fe.recursosNaturales.get(seleccionado).getCriterio1();
+                val2=fe.recursosNaturales.get(seleccionado).getCriterio2();
+                val3=fe.recursosNaturales.get(seleccionado).getCriterio3();
+                val4=fe.recursosNaturales.get(seleccionado).getCriterio4();
+                val5=fe.recursosNaturales.get(seleccionado).getCriterio5();
+                val6=fe.recursosNaturales.get(seleccionado).getCriterio6();
+                val7=fe.recursosNaturales.get(seleccionado).getCriterio7();
+                val8=fe.recursosNaturales.get(seleccionado).getCriterio8();
+                val9=fe.recursosNaturales.get(seleccionado).getCriterio9();
+                val10=fe.recursosNaturales.get(seleccionado).getCriterio10();
+            }else{
+                val1=fe.recursosCulturales.get(seleccionado).getCriterio1();
+                val2=fe.recursosCulturales.get(seleccionado).getCriterio2();
+                val3=fe.recursosCulturales.get(seleccionado).getCriterio3();
+                val4=fe.recursosCulturales.get(seleccionado).getCriterio4();
+                val5=fe.recursosCulturales.get(seleccionado).getCriterio5();
+                val6=fe.recursosCulturales.get(seleccionado).getCriterio6();
+                val7=fe.recursosCulturales.get(seleccionado).getCriterio7();
+                val8=fe.recursosCulturales.get(seleccionado).getCriterio8();
+                val9=fe.recursosCulturales.get(seleccionado).getCriterio9();
+                val10=fe.recursosCulturales.get(seleccionado).getCriterio10();
+            }
+            FormatoCampo(txt_1,val1);
+            FormatoCampo(txt_2,val2);
+            FormatoCampo(txt_3,val3);
+            FormatoCampo(txt_4,val4);
+            FormatoCampo(txt_5,val5);
+            FormatoCampo(txt_6,val6);
+            FormatoCampo(txt_7,val7);
+            FormatoCampo(txt_8,val8);
+            FormatoCampo(txt_9,val9);
+            FormatoCampo(txt_10,val10);
+              
+        }catch(Exception e){System.out.println(e.getMessage());}
+    }
+    
+    public void guardar(){
+        if(name.compareTo("4")==0){
+            fe.recursosNaturales.get(seleccionado).setCriterio1(val1);
+            fe.recursosNaturales.get(seleccionado).setCriterio2(val2);
+            fe.recursosNaturales.get(seleccionado).setCriterio3(val3);
+            fe.recursosNaturales.get(seleccionado).setCriterio4(val4);
+            fe.recursosNaturales.get(seleccionado).setCriterio5(val5);
+            fe.recursosNaturales.get(seleccionado).setCriterio6(val6);
+            fe.recursosNaturales.get(seleccionado).setCriterio7(val7);
+            fe.recursosNaturales.get(seleccionado).setCriterio8(val8);
+            fe.recursosNaturales.get(seleccionado).setCriterio9(val9);
+            fe.recursosNaturales.get(seleccionado).setCriterio10(val10);
+        }else{
+            fe.recursosCulturales.get(seleccionado).setCriterio1(val1);
+            fe.recursosCulturales.get(seleccionado).setCriterio2(val2);
+            fe.recursosCulturales.get(seleccionado).setCriterio3(val3);
+            fe.recursosCulturales.get(seleccionado).setCriterio4(val4);
+            fe.recursosCulturales.get(seleccionado).setCriterio5(val5);
+            fe.recursosCulturales.get(seleccionado).setCriterio6(val6);
+            fe.recursosCulturales.get(seleccionado).setCriterio7(val7);
+            fe.recursosCulturales.get(seleccionado).setCriterio8(val8);
+            fe.recursosCulturales.get(seleccionado).setCriterio9(val9);
+            fe.recursosCulturales.get(seleccionado).setCriterio10(val10);
         }
-
     }
 
-    public ValorTuristico(FuncionesEvaluacion fe, VentanaInicio vi, String name) {
+    public ValorTuristico(int seleccionado,String titulo,FuncionesEvaluacion fe, String name, VentanaRecursos vr) {
+        super(vr);
         initComponents();
         this.fe = fe;
-        this.vi = vi;
         this.name = name;
-        this.txt_1.requestFocusInWindow();
-        this.Refrescar();
+        this.vr=vr;
+        this.seleccionado=seleccionado;
+        this.setTitle(titulo);
         this.setLocationRelativeTo(null);
-        this.setAlwaysOnTop(true);
+        Refrescar();
+        this.setModal(true);
+        this.setVisible(true);
+        this.txt_1.requestFocusInWindow();
     }
 
     @SuppressWarnings("unchecked")
@@ -98,20 +171,14 @@ public class ValorTuristico extends javax.swing.JFrame {
         lbl_vexplotacion = new javax.swing.JLabel();
         lbl_total = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_guardar = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Valor Turistico");
         setLocationByPlatform(true);
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                formWindowClosed(evt);
-            }
-        });
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
@@ -370,25 +437,24 @@ public class ValorTuristico extends javax.swing.JFrame {
 
         jPanel3.add(jPanel8);
 
-        jButton1.setText("Grafica VS");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Guardar");
+        jButton2.setText("Siguiente");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Cancelar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btn_guardarActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Anterior");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -396,117 +462,67 @@ public class ValorTuristico extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGap(35, 35, 35))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap())
+                    .addComponent(jButton4)
+                    .addComponent(btn_guardar))
+                .addGap(21, 21, 21))
         );
 
         jPanel3.add(jPanel9);
 
         jTabbedPane1.addTab("Valor Turistico", jPanel3);
 
-        getContentPane().add(jTabbedPane1);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addGap(0, 0, 0))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addGap(5, 5, 5))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+    private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
+        // TODO add your handling code here:
+        try {
+            lbl_vpatrimonial.setText(String.valueOf(vPatrimonio()));
+            lbl_vexplotacion.setText(String.valueOf(vUso()));
+            lbl_total.setText(String.valueOf(vTuristico()));   
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jPanel3ComponentShown
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if (name.compareTo("4") == 0) {
-            vi.txt_5.requestFocus();
+            fe.val1_4 = Math.round(fe.vTuristico4());
         } else {
-            vi.jTabbedPane2.setSelectedIndex(1);
-            vi.txt_6.requestFocus();
+            fe.val1_5 = Math.round(fe.vTuristico5());
         }
-        VentanaInicio.vro = false;
-        VentanaInicio.vco = false;
-    }//GEN-LAST:event_formWindowClosed
-
-    private void txt_4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_4FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_44 = Integer.parseInt(txt_4.getText());
-            } else {
-                fe.val1_54 = Integer.parseInt(txt_4.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_4FocusLost
-
-    private void txt_4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_4KeyPressed
-        // TODO add your handling code here:
-        if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
-            try {
-                if (name.compareTo("4") == 0) {
-                    fe.val1_44 = Integer.parseInt(txt_4.getText());
-                } else {
-                    fe.val1_54 = Integer.parseInt(txt_4.getText());
-                }
-            } catch (Exception e) {
-            }
-
-            jTabbedPane1.setSelectedIndex(1);
-            txt_5.requestFocus();
-        }
-    }//GEN-LAST:event_txt_4KeyPressed
-
-    private void txt_4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_4KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_4.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_4KeyTyped
-
-    private void txt_10FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_10FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_410 = Integer.parseInt(txt_10.getText());
-            } else {
-                fe.val1_510 = Integer.parseInt(txt_10.getText());
-            }
-
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_10FocusLost
-
-    private void txt_10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_10KeyPressed
-        // TODO add your handling code here:
-        if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
-            try {
-                if (name.compareTo("4") == 0) {
-                fe.val1_410 = Integer.parseInt(txt_10.getText());
-            } else {
-                fe.val1_510 = Integer.parseInt(txt_10.getText());
-            }
-            } catch (Exception e) {
-            }
-
-            jTabbedPane1.setSelectedIndex(2);
-        }
-    }//GEN-LAST:event_txt_10KeyPressed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txt_10KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_10KeyTyped
         // TODO add your handling code here:
@@ -521,222 +537,25 @@ public class ValorTuristico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_10KeyTyped
 
-    private void txt_1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_1FocusLost
+    private void txt_10KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_10KeyPressed
+        // TODO add your handling code here:
+        if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
+            try {
+                val10 = Integer.parseInt(txt_10.getText());
+            } catch (Exception e) {
+            }
+
+            jTabbedPane1.setSelectedIndex(2);
+        }
+    }//GEN-LAST:event_txt_10KeyPressed
+
+    private void txt_10FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_10FocusLost
         // TODO add your handling code here:
         try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_41 = Integer.parseInt(txt_1.getText());
-            } else {
-                fe.val1_51 = Integer.parseInt(txt_1.getText());
-            }
+            val10 = Integer.parseInt(txt_10.getText());
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_txt_1FocusLost
-
-    private void txt_2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_2FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_42 = Integer.parseInt(txt_2.getText());
-            } else {
-                fe.val1_52 = Integer.parseInt(txt_2.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_2FocusLost
-
-    private void txt_3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_3FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_43 = Integer.parseInt(txt_3.getText());
-            } else {
-                fe.val1_53 = Integer.parseInt(txt_3.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_3FocusLost
-
-    private void txt_5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_45 = Integer.parseInt(txt_5.getText());
-            } else {
-                fe.val1_55 = Integer.parseInt(txt_5.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_5FocusLost
-
-    private void txt_6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_6FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_46 = Integer.parseInt(txt_6.getText());
-            } else {
-                fe.val1_56 = Integer.parseInt(txt_6.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_6FocusLost
-
-    private void txt_7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_7FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_47 = Integer.parseInt(txt_7.getText());
-            } else {
-                fe.val1_57 = Integer.parseInt(txt_7.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_7FocusLost
-
-    private void txt_8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_8FocusLost
-        // TODO add your handling code here:
-        try {
-           if (name.compareTo("4") == 0) {
-                fe.val1_48 = Integer.parseInt(txt_8.getText());
-            } else {
-                fe.val1_58 = Integer.parseInt(txt_8.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_8FocusLost
-
-    private void txt_9FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_9FocusLost
-        // TODO add your handling code here:
-        try {
-            if (name.compareTo("4") == 0) {
-                fe.val1_49 = Integer.parseInt(txt_9.getText());
-            } else {
-                fe.val1_59 = Integer.parseInt(txt_9.getText());
-            }
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_txt_9FocusLost
-
-    private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
-        // TODO add your handling code here:
-        if (name.compareTo("4") == 0) {
-            lbl_vpatrimonial.setText(String.valueOf(fe.vPatrimonio4()));
-            lbl_vexplotacion.setText(String.valueOf(fe.vUso4()));
-            lbl_total.setText(String.valueOf(fe.vTuristico4()));
-        } else {
-            lbl_vpatrimonial.setText(String.valueOf(fe.vPatrimonio5()));
-            lbl_vexplotacion.setText(String.valueOf(fe.vUso5()));
-            lbl_total.setText(String.valueOf(fe.vTuristico5()));
-        }
-    }//GEN-LAST:event_jPanel3ComponentShown
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        if (name.compareTo("4") == 0) {
-            fe.val1_4 = Math.round(fe.vTuristico4());
-            vi.txt_4.setText(String.valueOf(fe.val1_4));
-        } else {
-            fe.val1_5 = Math.round(fe.vTuristico5());
-            vi.txt_5.setText(String.valueOf(fe.val1_5));
-        }
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void txt_5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_5KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_5.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_5KeyTyped
-
-    private void txt_1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_1KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_1.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_1KeyTyped
-
-    private void txt_2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_2KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_2.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_2KeyTyped
-
-    private void txt_3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_3KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_3.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_3KeyTyped
-
-    private void txt_6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_6KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_6.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_6KeyTyped
-
-    private void txt_7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_7KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_7.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_7KeyTyped
-
-    private void txt_8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_8KeyTyped
-        // TODO add your handling code here:
-        char c;
-        c = evt.getKeyChar();
-        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
-            //getToolkit().beep();
-            evt.consume();
-        }
-        if (txt_8.getCaretPosition() > 0) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txt_8KeyTyped
+    }//GEN-LAST:event_txt_10FocusLost
 
     private void txt_9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_9KeyTyped
         // TODO add your handling code here:
@@ -751,18 +570,214 @@ public class ValorTuristico extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_9KeyTyped
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txt_9FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_9FocusLost
         // TODO add your handling code here:
-        if (name.compareTo("4") == 0)
-            fe.CrearGraficaVS("4");
-        else
-            fe.CrearGraficaVS("5");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        try {
+            val9 = Integer.parseInt(txt_9.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_9FocusLost
+
+    private void txt_8KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_8KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_8.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_8KeyTyped
+
+    private void txt_8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_8FocusLost
+        // TODO add your handling code here:
+        try {
+            val8 = Integer.parseInt(txt_8.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_8FocusLost
+
+    private void txt_7KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_7KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_7.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_7KeyTyped
+
+    private void txt_7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_7FocusLost
+        // TODO add your handling code here:
+        try {
+            val7 = Integer.parseInt(txt_7.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_7FocusLost
+
+    private void txt_6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_6KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_6.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_6KeyTyped
+
+    private void txt_6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_6FocusLost
+        // TODO add your handling code here:
+        try {
+            val6 = Integer.parseInt(txt_6.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_6FocusLost
+
+    private void txt_5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_5KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_5.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_5KeyTyped
+
+    private void txt_5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_5FocusLost
+        // TODO add your handling code here:
+        try {
+            val5 = Integer.parseInt(txt_5.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_5FocusLost
+
+    private void txt_4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_4KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_4.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_4KeyTyped
+
+    private void txt_4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_4KeyPressed
+        // TODO add your handling code here:
+        if (!evt.isShiftDown() && evt.getKeyCode() == KeyEvent.VK_TAB) {
+            try {
+                val4 = Integer.parseInt(txt_4.getText());
+            } catch (Exception e) {
+            }
+
+            jTabbedPane1.setSelectedIndex(1);
+            txt_5.requestFocus();
+        }
+    }//GEN-LAST:event_txt_4KeyPressed
+
+    private void txt_4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_4FocusLost
+        // TODO add your handling code here:
+        try {
+            val4 = Integer.parseInt(txt_4.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_4FocusLost
+
+    private void txt_3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_3KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_3.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_3KeyTyped
+
+    private void txt_3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_3FocusLost
+        // TODO add your handling code here:
+        try {
+            val3 = Integer.parseInt(txt_3.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_3FocusLost
+
+    private void txt_2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_2KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_2.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_2KeyTyped
+
+    private void txt_2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_2FocusLost
+        // TODO add your handling code here:
+        try {
+            val2 = Integer.parseInt(txt_2.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_2FocusLost
+
+    private void txt_1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_1KeyTyped
+        // TODO add your handling code here:
+        char c;
+        c = evt.getKeyChar();
+        if (!(c == KeyEvent.VK_0 || c == KeyEvent.VK_1 || c == KeyEvent.VK_2 || c == KeyEvent.VK_3 || c == KeyEvent.VK_4 || c == KeyEvent.VK_5 || c == KeyEvent.VK_DELETE || c == KeyEvent.VK_BACK_SPACE)) {
+            //getToolkit().beep();
+            evt.consume();
+        }
+        if (txt_1.getCaretPosition() > 0) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_1KeyTyped
+
+    private void txt_1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_1FocusLost
+        // TODO add your handling code here:
+        try {
+            val1 = Integer.parseInt(txt_1.getText());
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txt_1FocusLost
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        // TODO add your handling code here:
+        if(checar()){
+            guardar();
+            vr.ActualizarLista();
+            this.dispose();
+        }else
+             JOptionPane.showMessageDialog(this, "Llene todos los campos", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+        
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_guardar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;

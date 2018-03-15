@@ -5,16 +5,26 @@
  */
 package sistemaevaluacionturistica;
 
+import java.awt.Color;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartMouseEvent;
+import org.jfree.chart.ChartMouseListener;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.ValueMarker;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.ui.RectangleAnchor;
 
 /**
  *
@@ -25,15 +35,11 @@ public class FuncionesEvaluacion {
     public int state = 1;
     public int val1_1 = -1, val1_2 = -1, val1_3 = -1, val1_4 = -1, val1_5 = -1;
 
-    public int val1_41 = -1, val1_42 = -1, val1_43 = -1, val1_44 = -1, val1_45 = -1;
-    public int val1_46 = -1, val1_47 = -1, val1_48 = -1, val1_49 = -1, val1_410 = -1;
-
-    public int val1_51 = -1, val1_52 = -1, val1_53 = -1, val1_54 = -1, val1_55 = -1;
-    public int val1_56 = -1, val1_57 = -1, val1_58 = -1, val1_59 = -1, val1_510 = -1;
-
     public int val2_1 = -1, val2_2 = -1, val2_3 = -1, val2_4 = -1;
     public int val3_1 = -1, val3_2 = -1, val3_3 = -1, val3_4 = -1;
     public int val4_1 = -1, val4_2 = -1, val4_3 = -1, val4_4 = -1;
+    public List<Recursos> recursosCulturales=new ArrayList<>();
+    public List<Recursos> recursosNaturales=new ArrayList<>();
 
     public String municipio = "";
     public String estado = "";
@@ -156,58 +162,139 @@ public class FuncionesEvaluacion {
         return val4_1 + val4_2 + val4_3 + val4_4;
     }
 
-    public double Ptotal() {
-        double v1 = (double) ((double) sumaP1() / 25.0);
-        double v2 = (double) ((double) sumaP2() / 20.0);
-        double v3 = (double) ((float) sumaP3() / 20.0);
-        double v4 = (double) ((double) sumaP4() / 20.0);
+    public float Ptotal() {
+        float v1 = (float) ((float) sumaP1() / 25.0);
+        float v2 = (float) ((float) sumaP2() / 20.0);
+        float v3 = (float) ((float) sumaP3() / 20.0);
+        float v4 = (float) ((float) sumaP4() / 20.0);
 
-        double p1 = (double) (v1 * 0.30);
-        double p2 = (double) (v2 * 0.15);
-        double p3 = (double) (v3 * 0.15);
-        double p4 = (double) (v4 * 0.40);
-
-//        System.out.println(p1);
-//        System.out.println(p2);
-//        System.out.println(p3);
-//        System.out.println(p4);
+        float p1 = (float) (v1 * 0.30);
+        float p2 = (float) (v2 * 0.15);
+        float p3 = (float) (v3 * 0.15);
+        float p4 = (float) (v4 * 0.40);
         return (p1 + p2 + p3 + p4) * 100;
     }
 
-    public double P1() {
-        double v1 = (double) ((double) sumaP1() / 25.0);
-        return (double) (v1 * 0.30);
+    public float P1() {
+        float v1 = (float) ((float) sumaP1() / 25.0);
+        return (float) (v1 * 0.30);
     }
 
     public double P2() {
-        double v2 = (double) ((double) sumaP2() / 20.0);
-        return (double) (v2 * 0.15);
+        float v2 = (float) ((float) sumaP2() / 20.0);
+        return (float) (v2 * 0.15);
     }
 
-    public double P3() {
-        double v3 = (double) ((double) sumaP3() / 20.0);
-        return (double) (v3 * 0.15);
+    public float P3() {
+        float v3 = (float) ((float) sumaP3() / 20.0);
+        return (float) (v3 * 0.15);
     }
 
-    public double P4() {
-        double v4 = (double) ((double) sumaP4() / 20.0);
-        return (double) (v4 * 0.40);
+    public float P4() {
+        float v4 = (float) ((float) sumaP4() / 20.0);
+        return (float) (v4 * 0.40);
     }
 
     public float vPatrimonio4() {
-        return (float) (((float) val1_41 * 0.4) + ((float) val1_42 * 0.3) + ((float) val1_43 * 0.1) + ((float) val1_44 * 0.2));
+        float criterio1,c1=0;
+        float criterio2,c2=0;
+        float criterio3,c3=0;
+        float criterio4,c4=0;
+        int size = recursosNaturales.size();
+        for (Recursos recurso : recursosNaturales){
+            if(!recurso.get_State()){
+                c1+=recurso.getCriterio1();
+                c2+=recurso.getCriterio2();
+                c3+=recurso.getCriterio3();
+                c4+=recurso.getCriterio4();
+            }else
+                size--;
+        }
+        criterio1=c1/size;
+        criterio2=c2/size;
+        criterio3=c3/size;
+        criterio4=c4/size;
+        return (float) (((float) criterio1 * 0.4) + ((float) criterio2 * 0.3) + ((float) criterio3 * 0.1) + ((float) criterio4 * 0.2));
     }
 
     public float vPatrimonio5() {
-        return (float) (((float) val1_51 * 0.4) + ((float) val1_52 * 0.3) + ((float) val1_53 * 0.1) + ((float) val1_54 * 0.2));
+        float criterio1,c1=0;
+        float criterio2,c2=0;
+        float criterio3,c3=0;
+        float criterio4,c4=0;
+        int size = recursosCulturales.size();
+        for (Recursos recurso : recursosCulturales){
+            if(!recurso.get_State()){
+                c1+=recurso.getCriterio1();
+                c2+=recurso.getCriterio2();
+                c3+=recurso.getCriterio3();
+                c4+=recurso.getCriterio4();
+            }else
+                size--;
+        }
+        criterio1=c1/size;
+        criterio2=c2/size;
+        criterio3=c3/size;
+        criterio4=c4/size;
+        return (float) (((float) criterio1 * 0.4) + ((float) criterio2 * 0.3) + ((float) criterio3 * 0.1) + ((float) criterio4 * 0.2));
     }
 
     public float vUso4() {
-        return (float) (((float) val1_45 * 0.1) + ((float) val1_46 * 0.1) + ((float) val1_47 * 0.2) + ((float) val1_48 * 0.3) + ((float) val1_49 * 0.2) + ((float) val1_410 * 0.1));
+        float criterio5,c5=0;
+        float criterio6,c6=0;
+        float criterio7,c7=0;
+        float criterio8,c8=0;
+        float criterio9,c9=0;
+        float criterio10,c10=0;
+        
+        int size = recursosNaturales.size();
+        for (Recursos recurso : recursosNaturales){
+            if(!recurso.get_State()){
+                c5+=recurso.getCriterio5();
+                c6+=recurso.getCriterio6();
+                c7+=recurso.getCriterio7();
+                c8+=recurso.getCriterio8();
+                c9+=recurso.getCriterio9();
+                c10+=recurso.getCriterio10();
+            }else
+                size--;
+        }
+        criterio5=c5/size;
+        criterio6=c6/size;
+        criterio7=c7/size;
+        criterio8=c8/size;
+        criterio9=c9/size;
+        criterio10=c10/size;
+        return (float) (((float) criterio5 * 0.1) + ((float) criterio6 * 0.1) + ((float) criterio7 * 0.2) + ((float) criterio8 * 0.3) + ((float) criterio9 * 0.2) + ((float) criterio10 * 0.1));
     }
 
     public float vUso5() {
-        return (float) (((float) val1_55 * 0.1) + ((float) val1_56 * 0.1) + ((float) val1_57 * 0.2) + ((float) val1_58 * 0.3) + ((float) val1_59 * 0.2) + ((float) val1_510 * 0.1));
+        float criterio5,c5=0;
+        float criterio6,c6=0;
+        float criterio7,c7=0;
+        float criterio8,c8=0;
+        float criterio9,c9=0;
+        float criterio10,c10=0;
+        
+        int size = recursosCulturales.size();
+        for (Recursos recurso : recursosCulturales){
+            if(!recurso.get_State()){
+                c5+=recurso.getCriterio5();
+                c6+=recurso.getCriterio6();
+                c7+=recurso.getCriterio7();
+                c8+=recurso.getCriterio8();
+                c9+=recurso.getCriterio9();
+                c10+=recurso.getCriterio10();
+            }else
+                size--;
+        }
+        criterio5=c5/size;
+        criterio6=c6/size;
+        criterio7=c7/size;
+        criterio8=c8/size;
+        criterio9=c9/size;
+        criterio10=c10/size;
+        return (float) (((float) criterio5 * 0.1) + ((float) criterio6 * 0.1) + ((float) criterio7 * 0.2) + ((float) criterio8 * 0.3) + ((float) criterio9 * 0.2) + ((float) criterio10 * 0.1));
     }
 
     public float vTuristico4() {
@@ -217,36 +304,131 @@ public class FuncionesEvaluacion {
     public float vTuristico5() {
         return (float) ((vPatrimonio5() * 0.55) + (vUso5() * 0.45));
     }
+    
+    public JFreeChart g1(){
+        JFreeChart grafica;
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
 
-    public void CrearGrafica() {
+        data.addValue(val1_1, "Conservación Ambiental", "");
+        data.addValue(val1_2, "Singularidad del Destino", "");
+        data.addValue(val1_3, "Diversidad del Entorno", "");
+        data.addValue(val1_4, "Atractivos Naturales", "");
+        data.addValue(val1_5, "Atractivos Culturales", "");
+        grafica = ChartFactory.createBarChart3D("Patrimonio Natural y Cultural " + municipio + "," + estado, "Aspecto",
+                "Puntuaje", data, PlotOrientation.VERTICAL, true, true, false);
+        return grafica;
+    }
+    
+    public JFreeChart g2(){
+        JFreeChart grafica;
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+
+        data.addValue(val2_1, "Accesibilidad", "");
+        data.addValue(val2_2, "Proximidad", "");
+        data.addValue(val2_3, "Inserción a la oferta turística", "");
+        data.addValue(val2_4, " Atractividad", "");
+        grafica = ChartFactory.createBarChart3D("Potencial de Vinculación " + municipio + "," + estado, "Aspecto",
+                "Puntuaje", data, PlotOrientation.VERTICAL, true, true, false);
+        return grafica;
+    }
+    
+    public JFreeChart g3(){
+        JFreeChart grafica;
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+
+        data.addValue(val3_1, "Estacionalidad", "");
+        data.addValue(val3_2, "Tipo de Turista", "");
+        data.addValue(val3_3, "Número de Actividades", "");
+        data.addValue(val3_4, "Servicios Básicos", "");
+        grafica = ChartFactory.createBarChart3D("Diversidad de Oportuniadades " + municipio + "," + estado, "Aspecto",
+                "Puntuaje", data, PlotOrientation.VERTICAL, true, true, false);
+        return grafica;
+    }
+    
+    public JFreeChart g4(){
+        JFreeChart grafica;
+        DefaultCategoryDataset data = new DefaultCategoryDataset();
+
+        data.addValue(val4_1, "Compromiso de Autoridades", "");
+        data.addValue(val4_2, "Tenencia de la Tierra", "");
+        data.addValue(val4_3, "Conflictos en la región", "");
+        data.addValue(val4_4, "Seguridad del Turista", "");
+        grafica = ChartFactory.createBarChart3D("Legalidad e Institucionalidad " + municipio + "," + estado, "Aspecto",
+                "Puntuaje", data, PlotOrientation.VERTICAL, true, true, false);
+        return grafica;
+    }
+    
+    public JFreeChart grafica(){
         JFreeChart grafica = null;
         DefaultCategoryDataset data = new DefaultCategoryDataset();
 
-        data.addValue(val1_1, "Conservacion Ambiental", "1.1");
-        data.addValue(val1_2, "Singularidad del Destino", "1.2");
-        data.addValue(val1_3, "Diversidad del Entorno", "1.3");
-        data.addValue(val1_4, "Atractivos Naturales", "1.4");
-        data.addValue(val1_5, "Atractivos Culturales", "1.5");
-        data.addValue(val2_1, "Accesibilidad", "2.1");
-        data.addValue(val2_2, "Proximidad", "2.2");
-        data.addValue(val2_3, "Inserción a la oferta turística", "2.3");
-        data.addValue(val2_4, "Atractividad", "2.4");
-        data.addValue(val3_1, "Estacionalidad", "3.1");
-        data.addValue(val3_2, "Tipo de Turista", "3.2");
-        data.addValue(val3_3, "Número de Actividades", "3.3");
-        data.addValue(val3_4, "Servicios Básicos", "3.4");
-        data.addValue(val4_1, "Compromiso de Autoridades", "4.1");
-        data.addValue(val4_2, "Tenencia de la Tierra", "4.2");
-        data.addValue(val4_3, "Conflictos en la región", "4.3");
-        data.addValue(val4_4, "Seguridad", "4.4");
-
-        grafica = ChartFactory.createBarChart3D("Caracteristicas de " + municipio + "," + estado, "Aspecto",
-                "Puntuaje", data, PlotOrientation.HORIZONTAL, true, true, false);
+        data.addValue(((float)sumaP1()/25)*100, "Patrimonio Natural y Cultural", "");
+        data.addValue(((float)sumaP2()/20)*100, "Potencial de Vinculación", "");
+        data.addValue(((float)sumaP3()/20)*100, "Diversidad de Oportunidades", "");
+        data.addValue(((float)sumaP4()/20)*100, "Legalidad e Institucionalidad", "");
+        data.addValue(Ptotal(), "Potencial de la Región", "");
         
+        ValueMarker marker=new ValueMarker(55);
+        marker.setPaint(Color.red);
+        marker.setLabel("Linea minima de Potencial");
+        marker.setLabelAnchor(RectangleAnchor.CENTER);
+        
+        grafica = ChartFactory.createBarChart3D("Caracteristicas de " + municipio + "," + estado, "Aspecto",
+                "Puntuaje", data, PlotOrientation.VERTICAL, true, true, false);
+        grafica.getCategoryPlot().addRangeMarker(marker);
+        return grafica;
+    }
 
+    public void CrearGrafica(VentanaR vr) {
         //Se crea la ventana para lanzarla
-        ChartPanel panel = new ChartPanel(grafica);
-        JFrame ventana = new JFrame("Grafica");
+        ChartPanel panel = new ChartPanel(grafica());
+        panel.setDomainZoomable(false);
+        panel.setRangeZoomable(false);
+        panel.setPopupMenu(null);
+        panel.addChartMouseListener(new ChartMouseListener() {
+            @Override
+            public void chartMouseClicked(ChartMouseEvent cme){
+                try{
+                boolean e1=cme.getEntity().getToolTipText().contains("Patrimonio");
+                boolean e2=cme.getEntity().getToolTipText().contains("Vinculación");
+                boolean e3=cme.getEntity().getToolTipText().contains("Diversidad");
+                boolean e4=cme.getEntity().getToolTipText().contains("Legalidad");
+                if (e1){
+                    panel.setChart(g1());
+                    panel.repaint();
+                }
+                else if (e2){
+                    panel.setChart(g2());
+                    panel.repaint();
+                }
+                else if (e3){
+                    panel.setChart(g3());
+                    panel.repaint();
+                }
+                else if (e4){
+                    panel.setChart(g4());
+                    panel.repaint();
+                }else{
+                    panel.setChart(grafica());
+                    panel.repaint();
+                }
+                panel.setDomainZoomable(false);
+                panel.setRangeZoomable(false);
+                panel.setPopupMenu(null);
+                }catch(Exception e){
+                    panel.setChart(grafica());
+                    panel.repaint();
+                    panel.setDomainZoomable(false);
+                    panel.setRangeZoomable(false);
+                    panel.setPopupMenu(null);
+                }
+            }
+            @Override
+            public void chartMouseMoved(ChartMouseEvent cme){
+            }
+        });
+        
+        JDialog ventana = new JDialog(vr);
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -260,47 +442,41 @@ public class FuncionesEvaluacion {
         });
         ventana.getContentPane().add(panel);
         ventana.pack();
-        ventana.setVisible(true);
         ventana.setLocation(600,50);
+        ventana.setModal(true);
+        ventana.setVisible(true);
         //return  ventana;
     }
 
-    private XYDataset creaDataset4() {
+    private XYDataset creaDataset(List<Recursos> recursos) {
         XYSeriesCollection dataset = new XYSeriesCollection();
 
         XYSeries s1 = new XYSeries("Valor del patrimonio vs Valor de explotación");
-        s1.add(vUso4(), vPatrimonio4());
-
+        for (Recursos recurso : recursos) {
+            s1.add(recurso.vUso(), recurso.vPatrimonio());
+        }
         dataset.addSeries(s1);
         return dataset;
     }
 
-    private XYDataset creaDataset5() {
-        XYSeriesCollection dataset = new XYSeriesCollection();
-
-        XYSeries s1 = new XYSeries("Valor del patrimonio vs Valor de explotación");
-        s1.add(vUso5(), vPatrimonio5());
-
-        dataset.addSeries(s1);
-        return dataset;
-    }
-
-    public void CrearGraficaVS(String name) {
+    public void CrearGraficaVS(String name,VentanaRecursos vr) {
         JFreeChart grafica = null;
         XYDataset data = null;
-        if (name.compareTo("4") == 0) {
-            data = creaDataset4();
-        } else {
-            data = creaDataset5();
-        }
-
+        if(name.compareTo("4")==0)
+            data=creaDataset(recursosNaturales);
+        else
+            data=creaDataset(recursosCulturales);
+        
         grafica = ChartFactory.createScatterPlot("Grafica VS", "Valor de Aprovechamiento", "Valor Patrimonio", data, PlotOrientation.HORIZONTAL, true, false, false);
         grafica.getXYPlot().getDomainAxis().setRange(0.0,5.0);
         grafica.getXYPlot().getRangeAxis().setRange(0.0,5.0);
         
         //Se crea la ventana para lanzarla
         ChartPanel panel = new ChartPanel(grafica);
-        JFrame ventana = new JFrame("Grafica");
+        panel.setDomainZoomable(false);
+        panel.setRangeZoomable(false);
+        panel.setPopupMenu(null);
+        JDialog ventana = new JDialog(vr);
         ventana.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -315,8 +491,8 @@ public class FuncionesEvaluacion {
         ventana.getContentPane().add(panel);
         ventana.pack();
         ventana.setLocation(600,50);
+        ventana.setModal(true);
         ventana.setVisible(true);
-        ventana.setAlwaysOnTop(true);
         //return  ventana;
     }
 
@@ -391,6 +567,28 @@ public class FuncionesEvaluacion {
         }
         if (municipio.compareTo("") == 0) {
             band = false;
+        }
+        return band;
+    }
+    
+    public boolean checarRecursosN(){
+        boolean band=true;
+        for (Recursos recurso : recursosNaturales) {
+            if(recurso.get_State()){
+                band=false;
+                break;
+            }     
+        }
+        return band;
+    }
+    
+    public boolean checarRecursosC(){
+        boolean band=true;
+        for (Recursos recurso : recursosNaturales) {
+            if(recurso.get_State()){
+                band=false;
+                break;
+            }     
         }
         return band;
     }
