@@ -11,6 +11,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuNuevo">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+N"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
               </Properties>
               <Events>
@@ -19,6 +22,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuAbrir">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+A"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Abrir"/>
               </Properties>
               <Events>
@@ -27,6 +33,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuGuardar">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+G"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
               <Events>
@@ -35,6 +44,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuBorrar">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+B"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Borrar"/>
               </Properties>
               <Events>
@@ -74,11 +86,27 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Opciones"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuAjustarLetra">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tama&#xf1;o Letra"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuAjustarLetraActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informacion sobre el Aspecto que se Evalua"/>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu2MouseClicked"/>
@@ -122,7 +150,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-71,0,0,2,-38"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-78,0,0,2,-63"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
@@ -157,14 +185,17 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel11" pref="343" max="32767" attributes="0"/>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="label_foto" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jPanel11" min="-2" pref="343" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Component id="label_foto" min="-2" pref="180" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -178,7 +209,7 @@
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Insertar Imagen"/>
-                <Property name="toolTipText" type="java.lang.String" value=""/>
+                <Property name="toolTipText" type="java.lang.String" value="Presionar para insertar imagen"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder justification="2" position="5"/>
@@ -274,7 +305,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jTabbedPane2" min="-2" pref="305" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
                       <Component id="btn_Calcular" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -308,9 +339,9 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel15" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel18" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jPanel18" pref="60" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="jPanel19" pref="187" max="32767" attributes="0"/>
+                              <Component id="jPanel19" min="-2" pref="174" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -341,10 +372,10 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="jPanel16" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jPanel17" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="jPanel17" pref="195" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -369,6 +400,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <AccessibilityProperties>
                                 <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
@@ -382,6 +414,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda12ActionPerformed"/>
@@ -392,6 +425,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda13ActionPerformed"/>
@@ -402,6 +436,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda14ActionPerformed"/>
@@ -412,6 +447,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda15ActionPerformed"/>
@@ -429,7 +465,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="label_1">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value=" Conservaci&#xf3;n Ambiental"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -438,7 +474,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_2">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Singularidad del Destino"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -447,7 +483,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_3">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value=" Diversidad del Entorno"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -456,7 +492,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_4">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value=" Atractivos Naturales"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -465,7 +501,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_5">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Atractivos Culturales"/>
                               </Properties>
                             </Component>
@@ -485,6 +521,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="txt_2"/>
                             </Property>
@@ -498,6 +535,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_2FocusLost"/>
@@ -508,6 +546,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                             <Property name="nextFocusableComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                               <ComponentRef name="txt_6"/>
                             </Property>
@@ -565,6 +604,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -582,6 +622,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -599,6 +640,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -616,6 +658,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -633,6 +676,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -664,9 +708,9 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel30" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel33" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jPanel33" pref="60" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="jPanel34" pref="187" max="32767" attributes="0"/>
+                              <Component id="jPanel34" min="-2" pref="174" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -697,10 +741,10 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="jPanel31" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jPanel32" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="jPanel32" pref="195" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -725,6 +769,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda21ActionPerformed"/>
@@ -735,6 +780,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda22ActionPerformed"/>
@@ -745,6 +791,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda23ActionPerformed"/>
@@ -755,6 +802,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda24ActionPerformed"/>
@@ -772,7 +820,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="label_6">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Accesibilidad"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -781,7 +829,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_7">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Proximidad"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -790,7 +838,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_8">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Inserci&#xf3;n a la Oferta Turistica"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -799,7 +847,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_9">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Atractividad"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -822,6 +870,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_6FocusLost"/>
@@ -835,6 +884,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_7FocusLost"/>
@@ -845,6 +895,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_8FocusLost"/>
@@ -855,6 +906,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_9FocusLost"/>
@@ -881,6 +933,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -898,6 +951,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -915,6 +969,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -932,6 +987,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -963,9 +1019,9 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel35" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel38" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jPanel38" pref="60" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="jPanel39" pref="187" max="32767" attributes="0"/>
+                              <Component id="jPanel39" min="-2" pref="174" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -996,10 +1052,10 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="jPanel36" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jPanel37" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="jPanel37" pref="195" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1024,6 +1080,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda31ActionPerformed"/>
@@ -1034,6 +1091,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda32ActionPerformed"/>
@@ -1044,6 +1102,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda33ActionPerformed"/>
@@ -1054,6 +1113,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda34ActionPerformed"/>
@@ -1071,7 +1131,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="label_10">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Estacionalidad"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1080,7 +1140,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_11">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Tipo de Turista"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1089,7 +1149,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_12">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="N&#xfa;mero de Actividades"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1098,7 +1158,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_13">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Servicios B&#xe1;sicos"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1121,6 +1181,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_10FocusLost"/>
@@ -1131,6 +1192,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_11FocusLost"/>
@@ -1141,6 +1203,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_12FocusLost"/>
@@ -1151,6 +1214,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_13FocusLost"/>
@@ -1177,6 +1241,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1194,6 +1259,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1211,6 +1277,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1228,6 +1295,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1259,9 +1327,9 @@
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jPanel45" max="32767" attributes="0"/>
                               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPanel48" min="-2" pref="60" max="-2" attributes="0"/>
+                              <Component id="jPanel48" pref="60" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="jPanel49" pref="187" max="32767" attributes="0"/>
+                              <Component id="jPanel49" min="-2" pref="174" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1292,10 +1360,10 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace pref="108" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="jPanel46" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jPanel47" min="-2" pref="195" max="-2" attributes="0"/>
+                                  <Component id="jPanel47" pref="195" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1320,6 +1388,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda41ActionPerformed"/>
@@ -1330,6 +1399,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda42ActionPerformed"/>
@@ -1340,6 +1410,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda43ActionPerformed"/>
@@ -1350,6 +1421,7 @@
                                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                                   <Image iconType="3" name="/iconos/ico_ayuda_24.png"/>
                                 </Property>
+                                <Property name="toolTipText" type="java.lang.String" value="&#xbf;Cual es el criterio de Evaluaci&#xf3;n?"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ayuda44ActionPerformed"/>
@@ -1367,7 +1439,7 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="label_14">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Compromiso con Autoridades"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1376,7 +1448,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_15">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Tenencia de Tierra"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1385,7 +1457,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_16">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Conflictos en la Regi&#xf3;n"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1394,7 +1466,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="label_17">
                               <Properties>
-                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Seguridad del Turista"/>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Cursor Por defecto"/>
@@ -1417,6 +1489,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_14FocusLost"/>
@@ -1427,6 +1500,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_15FocusLost"/>
@@ -1437,6 +1511,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_16FocusLost"/>
@@ -1447,6 +1522,7 @@
                           <Properties>
                             <Property name="columns" type="int" value="3"/>
                             <Property name="horizontalAlignment" type="int" value="0"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Valores entre 0 y 5"/>
                           </Properties>
                           <Events>
                             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txt_17FocusLost"/>
@@ -1473,6 +1549,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1490,6 +1567,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1507,6 +1585,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1524,6 +1603,7 @@
                               <Image iconType="3" name="/iconos/comentario.png"/>
                             </Property>
                             <Property name="text" type="java.lang.String" value="Comentario"/>
+                            <Property name="toolTipText" type="java.lang.String" value="Capturar comentario sobre el aspecto que se esta evaluando"/>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                                 <LineBorder/>
@@ -1544,6 +1624,7 @@
             <Component class="javax.swing.JButton" name="btn_Calcular">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Calcular"/>
+                <Property name="toolTipText" type="java.lang.String" value="Abrir ventana donde se mostraran los resultados"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_CalcularActionPerformed"/>

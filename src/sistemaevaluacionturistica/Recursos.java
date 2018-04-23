@@ -5,8 +5,6 @@
  */
 package sistemaevaluacionturistica;
 
-import sun.net.www.content.image.gif;
-
 /**
  *
  * @author Usuario

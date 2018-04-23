@@ -6,15 +6,23 @@
 package sistemaevaluacionturistica;
 
 import ConexionBD.conexionBD;
-import java.awt.Dialog;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class VentanaInicio extends javax.swing.JFrame {
@@ -24,6 +32,40 @@ public class VentanaInicio extends javax.swing.JFrame {
     public static boolean vco = false;
     public conexionBD bd;
     File f;
+    
+    public void crearDir(){
+        File folder=new File("Imagenes");
+        if (!folder.isDirectory()){
+            folder.mkdir();
+        }
+    }
+    
+    public void copiarImagen(){
+        try{    
+                File copia=new File("Imagenes/"+f.getName());
+                FileInputStream fregis = new FileInputStream(f.getAbsolutePath());
+                FileOutputStream fsalida = new FileOutputStream(copia, true);
+                int b = fregis.read();
+                while (b != -1) {
+                    fsalida.write(b);
+                    b = fregis.read();
+                }
+                fsalida.flush();
+                fsalida.close();
+                fregis.close(); 
+            }catch (IOException ioe) {
+                System.err.println(ioe.getMessage());
+            }
+    }    
+    
+    public void setImagen(){
+        
+        ImageIcon icon = new ImageIcon("Imagenes\\"+fe.img);
+        Icon icono = new ImageIcon(icon.getImage().getScaledInstance(label_foto.getHeight(),
+        label_foto.getWidth(), Image.SCALE_DEFAULT));
+        label_foto.setText(null);
+        label_foto.setIcon(icono);
+    }
 
     public void FormatoCampo(JTextField txt, int contenido) {
         if (contenido != -1) {
@@ -36,6 +78,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     public void CargarDatos() {
         lbl_estado.setText(fe.estado);
         lbl_municipio.setText(fe.municipio);
+        setImagen();
 
         jTabbedPane2.setSelectedIndex(0);
         FormatoCampo(txt_1, fe.val1_1);
@@ -47,8 +90,16 @@ public class VentanaInicio extends javax.swing.JFrame {
 
     public VentanaInicio() {
         initComponents();
+        JFrame.setDefaultLookAndFeelDecorated(true);
         fe = new FuncionesEvaluacion();
         bd = new conexionBD(fe);
+        //jMenu4.setVisible(false);
+        try {
+            Image icon = new ImageIcon(getClass().getResource("iconos/mexico.jpg")).getImage();
+            setIconImage(icon);
+        } catch (Exception e) {
+        }
+        crearDir();
         this.pack();
     }
 
@@ -171,6 +222,8 @@ public class VentanaInicio extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         menuRecursosNaturales = new javax.swing.JMenuItem();
         menuRecursosCulturales = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        menuAjustarLetra = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,7 +238,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         label_foto.setBackground(new java.awt.Color(204, 204, 255));
         label_foto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_foto.setText("Insertar Imagen");
-        label_foto.setToolTipText("");
+        label_foto.setToolTipText("Presionar para insertar imagen");
         label_foto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.BOTTOM));
         label_foto.setPreferredSize(new java.awt.Dimension(180, 180));
         label_foto.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -230,12 +283,13 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                .addContainerGap(35, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(label_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(label_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -254,6 +308,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel16.setLayout(new java.awt.GridLayout(5, 0, 0, 15));
 
         btn_ayuda11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda11.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda11ActionPerformed(evt);
@@ -263,6 +318,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         btn_ayuda11.getAccessibleContext().setAccessibleDescription("");
 
         btn_ayuda12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda12.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda12ActionPerformed(evt);
@@ -271,6 +327,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel16.add(btn_ayuda12);
 
         btn_ayuda13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda13.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda13ActionPerformed(evt);
@@ -279,6 +336,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel16.add(btn_ayuda13);
 
         btn_ayuda14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda14.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda14ActionPerformed(evt);
@@ -287,6 +345,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel16.add(btn_ayuda14);
 
         btn_ayuda15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda15.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda15ActionPerformed(evt);
@@ -296,27 +355,27 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jPanel17.setLayout(new java.awt.GridLayout(5, 0, 0, 20));
 
-        label_1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_1.setText(" Conservación Ambiental");
         label_1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel17.add(label_1);
 
-        label_2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_2.setText("Singularidad del Destino");
         label_2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel17.add(label_2);
 
-        label_3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_3.setText(" Diversidad del Entorno");
         label_3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel17.add(label_3);
 
-        label_4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_4.setText(" Atractivos Naturales");
         label_4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel17.add(label_4);
 
-        label_5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_5.setText("Atractivos Culturales");
         jPanel17.add(label_5);
 
@@ -325,10 +384,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addGap(96, 96, 96)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,6 +399,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_1.setColumns(3);
         txt_1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_1.setToolTipText("Valores entre 0 y 5");
         txt_1.setNextFocusableComponent(txt_2);
         txt_1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -355,6 +415,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_2.setColumns(3);
         txt_2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_2.setToolTipText("Valores entre 0 y 5");
         txt_2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_2FocusLost(evt);
@@ -369,6 +430,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_3.setColumns(3);
         txt_3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_3.setToolTipText("Valores entre 0 y 5");
         txt_3.setNextFocusableComponent(txt_6);
         txt_3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -412,6 +474,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_11.setText("Comentario");
+        btn_coment_11.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_11.setName("11"); // NOI18N
         btn_coment_11.addActionListener(new java.awt.event.ActionListener() {
@@ -423,6 +486,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_12.setText("Comentario");
+        btn_coment_12.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_12.setName("12"); // NOI18N
         btn_coment_12.addActionListener(new java.awt.event.ActionListener() {
@@ -434,6 +498,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_13.setText("Comentario");
+        btn_coment_13.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_13.setName("13"); // NOI18N
         btn_coment_13.addActionListener(new java.awt.event.ActionListener() {
@@ -445,6 +510,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_14.setText("Comentario");
+        btn_coment_14.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_14.setName("14"); // NOI18N
         btn_coment_14.addActionListener(new java.awt.event.ActionListener() {
@@ -456,6 +522,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_15.setText("Comentario");
+        btn_coment_15.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_15.setName("15"); // NOI18N
         btn_coment_15.addActionListener(new java.awt.event.ActionListener() {
@@ -473,9 +540,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addGap(43, 43, 43)
-                .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
         jPanel3Layout.setVerticalGroup(
@@ -496,6 +563,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel31.setLayout(new java.awt.GridLayout(5, 0, 0, 15));
 
         btn_ayuda21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda21.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda21ActionPerformed(evt);
@@ -504,6 +572,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel31.add(btn_ayuda21);
 
         btn_ayuda22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda22.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda22ActionPerformed(evt);
@@ -512,6 +581,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel31.add(btn_ayuda22);
 
         btn_ayuda23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda23.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda23ActionPerformed(evt);
@@ -520,6 +590,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel31.add(btn_ayuda23);
 
         btn_ayuda24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda24.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda24ActionPerformed(evt);
@@ -529,22 +600,22 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jPanel32.setLayout(new java.awt.GridLayout(5, 0, 0, 20));
 
-        label_6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_6.setText("Accesibilidad");
         label_6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel32.add(label_6);
 
-        label_7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_7.setText("Proximidad");
         label_7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel32.add(label_7);
 
-        label_8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_8.setText("Inserción a la Oferta Turistica");
         label_8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel32.add(label_8);
 
-        label_9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_9.setText("Atractividad");
         label_9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel32.add(label_9);
@@ -554,10 +625,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel30Layout.setHorizontalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel30Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addGap(96, 96, 96)
                 .addComponent(jPanel31, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jPanel32, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel32, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,6 +640,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_6.setColumns(3);
         txt_6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_6.setToolTipText("Valores entre 0 y 5");
         txt_6.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_6FocusLost(evt);
@@ -583,6 +655,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_7.setColumns(3);
         txt_7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_7.setToolTipText("Valores entre 0 y 5");
         txt_7.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_7FocusLost(evt);
@@ -597,6 +670,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_8.setColumns(3);
         txt_8.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_8.setToolTipText("Valores entre 0 y 5");
         txt_8.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_8FocusLost(evt);
@@ -611,6 +685,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_9.setColumns(3);
         txt_9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_9.setToolTipText("Valores entre 0 y 5");
         txt_9.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_9FocusLost(evt);
@@ -631,6 +706,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_21.setText("Comentario");
+        btn_coment_21.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_21.setName("21"); // NOI18N
         btn_coment_21.addActionListener(new java.awt.event.ActionListener() {
@@ -642,6 +718,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_22.setText("Comentario");
+        btn_coment_22.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_22.setName("22"); // NOI18N
         btn_coment_22.addActionListener(new java.awt.event.ActionListener() {
@@ -653,6 +730,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_23.setText("Comentario");
+        btn_coment_23.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_23.setName("23"); // NOI18N
         btn_coment_23.addActionListener(new java.awt.event.ActionListener() {
@@ -664,6 +742,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_24.setText("Comentario");
+        btn_coment_24.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_24.setName("24"); // NOI18N
         btn_coment_24.addActionListener(new java.awt.event.ActionListener() {
@@ -681,9 +760,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel33, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel33, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addGap(43, 43, 43)
-                .addComponent(jPanel34, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jPanel34, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
         jPanel4Layout.setVerticalGroup(
@@ -704,6 +783,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel36.setLayout(new java.awt.GridLayout(5, 0, 0, 15));
 
         btn_ayuda31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda31.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda31.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda31ActionPerformed(evt);
@@ -712,6 +792,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel36.add(btn_ayuda31);
 
         btn_ayuda32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda32.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda32.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda32ActionPerformed(evt);
@@ -720,6 +801,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel36.add(btn_ayuda32);
 
         btn_ayuda33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda33.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda33ActionPerformed(evt);
@@ -728,6 +810,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel36.add(btn_ayuda33);
 
         btn_ayuda34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda34.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda34.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda34ActionPerformed(evt);
@@ -737,22 +820,22 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jPanel37.setLayout(new java.awt.GridLayout(5, 0, 0, 20));
 
-        label_10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_10.setText("Estacionalidad");
         label_10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel37.add(label_10);
 
-        label_11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_11.setText("Tipo de Turista");
         label_11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel37.add(label_11);
 
-        label_12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_12.setText("Número de Actividades");
         label_12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel37.add(label_12);
 
-        label_13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_13.setText("Servicios Básicos");
         label_13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel37.add(label_13);
@@ -762,10 +845,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel35Layout.setHorizontalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel35Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addGap(96, 96, 96)
                 .addComponent(jPanel36, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel37, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
         );
         jPanel35Layout.setVerticalGroup(
             jPanel35Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -777,6 +860,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_10.setColumns(3);
         txt_10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_10.setToolTipText("Valores entre 0 y 5");
         txt_10.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_10FocusLost(evt);
@@ -791,6 +875,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_11.setColumns(3);
         txt_11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_11.setToolTipText("Valores entre 0 y 5");
         txt_11.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_11FocusLost(evt);
@@ -805,6 +890,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_12.setColumns(3);
         txt_12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_12.setToolTipText("Valores entre 0 y 5");
         txt_12.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_12FocusLost(evt);
@@ -819,6 +905,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_13.setColumns(3);
         txt_13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_13.setToolTipText("Valores entre 0 y 5");
         txt_13.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_13FocusLost(evt);
@@ -839,6 +926,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_31.setText("Comentario");
+        btn_coment_31.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_31.setName("31"); // NOI18N
         btn_coment_31.addActionListener(new java.awt.event.ActionListener() {
@@ -850,6 +938,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_32.setText("Comentario");
+        btn_coment_32.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_32.setName("32"); // NOI18N
         btn_coment_32.addActionListener(new java.awt.event.ActionListener() {
@@ -861,6 +950,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_33.setText("Comentario");
+        btn_coment_33.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_33.setName("33"); // NOI18N
         btn_coment_33.addActionListener(new java.awt.event.ActionListener() {
@@ -872,6 +962,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_34.setText("Comentario");
+        btn_coment_34.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_34.setName("34"); // NOI18N
         btn_coment_34.addActionListener(new java.awt.event.ActionListener() {
@@ -889,9 +980,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel38, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addGap(43, 43, 43)
-                .addComponent(jPanel39, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jPanel39, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
         jPanel5Layout.setVerticalGroup(
@@ -912,6 +1003,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel46.setLayout(new java.awt.GridLayout(5, 0, 0, 15));
 
         btn_ayuda41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda41.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda41ActionPerformed(evt);
@@ -920,6 +1012,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel46.add(btn_ayuda41);
 
         btn_ayuda42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda42.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda42.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda42ActionPerformed(evt);
@@ -928,6 +1021,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel46.add(btn_ayuda42);
 
         btn_ayuda43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda43.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda43.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda43ActionPerformed(evt);
@@ -936,6 +1030,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel46.add(btn_ayuda43);
 
         btn_ayuda44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        btn_ayuda44.setToolTipText("¿Cual es el criterio de Evaluación?");
         btn_ayuda44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ayuda44ActionPerformed(evt);
@@ -945,22 +1040,22 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jPanel47.setLayout(new java.awt.GridLayout(5, 0, 0, 20));
 
-        label_14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_14.setText("Compromiso con Autoridades");
         label_14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel47.add(label_14);
 
-        label_15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_15.setText("Tenencia de Tierra");
         label_15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel47.add(label_15);
 
-        label_16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_16.setText("Conflictos en la Región");
         label_16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel47.add(label_16);
 
-        label_17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        label_17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label_17.setText("Seguridad del Turista");
         label_17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel47.add(label_17);
@@ -970,10 +1065,10 @@ public class VentanaInicio extends javax.swing.JFrame {
         jPanel45Layout.setHorizontalGroup(
             jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel45Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addGap(96, 96, 96)
                 .addComponent(jPanel46, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jPanel47, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel47, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
         );
         jPanel45Layout.setVerticalGroup(
             jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -985,6 +1080,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_14.setColumns(3);
         txt_14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_14.setToolTipText("Valores entre 0 y 5");
         txt_14.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_14FocusLost(evt);
@@ -999,6 +1095,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_15.setColumns(3);
         txt_15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_15.setToolTipText("Valores entre 0 y 5");
         txt_15.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_15FocusLost(evt);
@@ -1013,6 +1110,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_16.setColumns(3);
         txt_16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_16.setToolTipText("Valores entre 0 y 5");
         txt_16.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_16FocusLost(evt);
@@ -1027,6 +1125,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         txt_17.setColumns(3);
         txt_17.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_17.setToolTipText("Valores entre 0 y 5");
         txt_17.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txt_17FocusLost(evt);
@@ -1047,6 +1146,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_41.setText("Comentario");
+        btn_coment_41.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_41.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_41.setName("41"); // NOI18N
         btn_coment_41.addActionListener(new java.awt.event.ActionListener() {
@@ -1058,6 +1158,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_42.setText("Comentario");
+        btn_coment_42.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_42.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_42.setName("42"); // NOI18N
         btn_coment_42.addActionListener(new java.awt.event.ActionListener() {
@@ -1069,6 +1170,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_43.setText("Comentario");
+        btn_coment_43.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_43.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_43.setName("43"); // NOI18N
         btn_coment_43.addActionListener(new java.awt.event.ActionListener() {
@@ -1080,6 +1182,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         btn_coment_44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/comentario.png"))); // NOI18N
         btn_coment_44.setText("Comentario");
+        btn_coment_44.setToolTipText("Capturar comentario sobre el aspecto que se esta evaluando");
         btn_coment_44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btn_coment_44.setName("44"); // NOI18N
         btn_coment_44.addActionListener(new java.awt.event.ActionListener() {
@@ -1097,9 +1200,9 @@ public class VentanaInicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel45, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel48, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                 .addGap(43, 43, 43)
-                .addComponent(jPanel49, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jPanel49, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1116,6 +1219,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         jTabbedPane2.addTab("Legalidad e Institucionalidad", jPanel6);
 
         btn_Calcular.setText("Calcular");
+        btn_Calcular.setToolTipText("Abrir ventana donde se mostraran los resultados");
         btn_Calcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_CalcularActionPerformed(evt);
@@ -1136,7 +1240,7 @@ public class VentanaInicio extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 50, Short.MAX_VALUE)
+                .addGap(0, 41, Short.MAX_VALUE)
                 .addComponent(btn_Calcular)
                 .addContainerGap())
         );
@@ -1147,6 +1251,7 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jMenu1.setText("Región");
 
+        menuNuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         menuNuevo.setText("Nuevo");
         menuNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1155,6 +1260,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jMenu1.add(menuNuevo);
 
+        menuAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         menuAbrir.setText("Abrir");
         menuAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1163,6 +1269,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jMenu1.add(menuAbrir);
 
+        menuGuardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
         menuGuardar.setText("Guardar");
         menuGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1171,6 +1278,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         });
         jMenu1.add(menuGuardar);
 
+        menuBorrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_B, java.awt.event.InputEvent.CTRL_MASK));
         menuBorrar.setText("Borrar");
         menuBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1209,7 +1317,20 @@ public class VentanaInicio extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setText("Opciones");
+
+        menuAjustarLetra.setText("Tamaño Letra");
+        menuAjustarLetra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAjustarLetraActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuAjustarLetra);
+
+        jMenuBar1.add(jMenu4);
+
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ico_ayuda_24.png"))); // NOI18N
+        jMenu2.setToolTipText("Informacion sobre el Aspecto que se Evalua");
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu2MouseClicked(evt);
@@ -1229,6 +1350,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         int resultado;
 
         CargarFoto ventana = new CargarFoto();
+        ventana.setIconImage(this.getIconImage());
         FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png");
         ventana.jcargafoto.setFileFilter(filtro);
         resultado = ventana.jcargafoto.showOpenDialog(null);
@@ -1236,11 +1358,10 @@ public class VentanaInicio extends javax.swing.JFrame {
             f = ventana.jcargafoto.getSelectedFile();
             if (JFileChooser.APPROVE_OPTION == resultado) {
                 System.out.println(f.toString());
-                ImageIcon icon = new ImageIcon(f.toString());
-                Icon icono = new ImageIcon(icon.getImage().getScaledInstance(label_foto.getHeight(),
-                        label_foto.getWidth(), Image.SCALE_DEFAULT));
-                label_foto.setText(null);
-                label_foto.setIcon(icono);
+                fe.img=f.getName();
+                this.copiarImagen();
+                this.setImagen();
+                setImagen();
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + ex);
@@ -1251,7 +1372,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_15ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_15.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_15.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1260,7 +1381,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_14ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_14.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_14.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1269,7 +1390,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_13ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_13.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_13.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1278,7 +1399,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_12ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_12.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_12.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1287,7 +1408,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_11ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_11.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_11.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1420,7 +1541,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_21ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_21.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_21.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1429,7 +1550,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_22ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_22.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_22.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1438,7 +1559,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_23ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_23.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_23.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1447,7 +1568,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_24ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_24.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_24.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1538,7 +1659,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_31ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_31.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_31.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1547,7 +1668,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_32ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_32.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_32.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1556,7 +1677,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_33ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_33.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_33.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1565,7 +1686,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_34ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_34.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_34.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1690,7 +1811,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_41ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_41.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_41.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1699,7 +1820,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_42ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_42.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_42.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1708,7 +1829,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_43ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_43.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_43.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1717,7 +1838,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private void btn_coment_44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_coment_44ActionPerformed
         // TODO add your handling code here:
         if (!vco) {
-            CapturaComentario cm = new CapturaComentario(fe, btn_coment_44.getName());
+            CapturaComentario cm = new CapturaComentario(fe, btn_coment_44.getName(),this);
             cm.setVisible(true);
             vco = true;
         }
@@ -1927,7 +2048,7 @@ public class VentanaInicio extends javax.swing.JFrame {
         if (!vro && !vco) {
             fe.estado = lbl_estado.getText();
             fe.municipio = lbl_municipio.getText();
-            if (fe.checarCampos() && fe.checarDatos()) {
+            if (fe.checarCampos()) {
                 if (!bd.inTable(fe.estado, fe.municipio)) {
                     bd.Guardar();
                 } else {
@@ -1937,11 +2058,11 @@ public class VentanaInicio extends javax.swing.JFrame {
                     }
                 }
             } else {
-                if (!fe.checarCampos()) {
+                /*if (!fe.checarCampos()) {
                     JOptionPane.showMessageDialog(this, "Por favor llene todos los campos de Aspectos a Evaluar", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
-                }
+                }*/
                 if (!fe.checarDatos()) {
-                    JOptionPane.showMessageDialog(this, "Por favor llene todos los campos de Datos del Municipio", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "Por favor llene todos los campos de Datos de la Región", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -1991,6 +2112,11 @@ public class VentanaInicio extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txt_3KeyPressed
 
+    private void menuAjustarLetraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAjustarLetraActionPerformed
+        // TODO add your handling code here:
+        OpcionLetra ol=new OpcionLetra(this);
+    }//GEN-LAST:event_menuAjustarLetraActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Calcular;
     private javax.swing.JButton btn_ayuda11;
@@ -2032,6 +2158,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
@@ -2085,6 +2212,7 @@ public class VentanaInicio extends javax.swing.JFrame {
     private javax.swing.JTextField lbl_estado;
     private javax.swing.JTextField lbl_municipio;
     private javax.swing.JMenuItem menuAbrir;
+    private javax.swing.JMenuItem menuAjustarLetra;
     private javax.swing.JMenuItem menuBorrar;
     private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuGuardar;

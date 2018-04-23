@@ -5,11 +5,15 @@
  */
 package sistemaevaluacionturistica;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Usuario
  */
-public class CargarFoto extends javax.swing.JFrame {
+public class CargarFoto extends javax.swing.JFrame{
 
     /**
      * Creates new form CargarFoto
@@ -24,7 +28,7 @@ public class CargarFoto extends javax.swing.JFrame {
 
         jcargafoto = new javax.swing.JFileChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jcargafoto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

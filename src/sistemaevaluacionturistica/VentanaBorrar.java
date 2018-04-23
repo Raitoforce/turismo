@@ -54,6 +54,7 @@ public class VentanaBorrar extends javax.swing.JDialog{
         this.fe=fe;
         initComponents();
         llenarEstados();
+        pack();
         this.setLocationRelativeTo(null);
         setModalityType(ModalityType.APPLICATION_MODAL);
         //setVisible(true);
@@ -163,11 +164,14 @@ public class VentanaBorrar extends javax.swing.JDialog{
     private void btn_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrirActionPerformed
         // TODO add your handling code here:
         try {
-            String estado=boxEstado.getSelectedItem().toString();
-            String municipio=boxMunicipio.getSelectedItem().toString();
-            conexionBD bd=new conexionBD(fe);
-            bd.BorrarM(estado,municipio);
-            vi.CargarDatos();
+            int option = JOptionPane.showConfirmDialog(null, "¿Estas seguro de borrar "+boxMunicipio.getSelectedItem().toString()+"?", "Advertencia", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                String estado=boxEstado.getSelectedItem().toString();
+                String municipio=boxMunicipio.getSelectedItem().toString();
+                conexionBD bd=new conexionBD(fe);
+                bd.BorrarM(estado,municipio);
+                vi.CargarDatos();
+            }
             this.dispose();
         } catch (Exception e){
             JOptionPane.showMessageDialog(this,"No hay Municipios Registrados");

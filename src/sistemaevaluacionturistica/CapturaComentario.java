@@ -5,11 +5,13 @@
  */
 package sistemaevaluacionturistica;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Usuario
  */
-public class CapturaComentario extends javax.swing.JFrame {
+public class CapturaComentario extends javax.swing.JDialog {
 
     /**
      * Creates new form CapturaComentario
@@ -78,11 +80,13 @@ public class CapturaComentario extends javax.swing.JFrame {
         }
     }
     
-    public CapturaComentario(FuncionesEvaluacion fe,String name){
+    public CapturaComentario(FuncionesEvaluacion fe,String name,JFrame frame){
+        super(frame);
         this.fe=fe;
         this.name=name;
         initComponents();
         cargarComentario();
+        this.setModal(true);
         this.setLocationRelativeTo(null);
     }
 

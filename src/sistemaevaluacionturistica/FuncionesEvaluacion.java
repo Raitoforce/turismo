@@ -7,6 +7,9 @@ package sistemaevaluacionturistica;
 
 import java.awt.Color;
 import java.awt.event.WindowEvent;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JButton;
@@ -31,7 +34,7 @@ import org.jfree.ui.RectangleAnchor;
  * @author Usuario
  */
 public class FuncionesEvaluacion {
-
+    BigDecimal bd;
     public int state = 1;
     public int val1_1 = -1, val1_2 = -1, val1_3 = -1, val1_4 = -1, val1_5 = -1;
 
@@ -145,6 +148,9 @@ public class FuncionesEvaluacion {
     public String ayuda4_4
             = "Es la confianza que se le brinda al visitante para que sienta la libertad de estar en la región\n"
             + "sin algún riesgo físico por violencia directa o indirecta";
+    
+    public FuncionesEvaluacion(){
+    }
 
     public int sumaP1() {
         return val1_1 + val1_2 + val1_3 + val1_4 + val1_5;
@@ -162,37 +168,47 @@ public class FuncionesEvaluacion {
         return val4_1 + val4_2 + val4_3 + val4_4;
     }
 
-    public float Ptotal() {
-        float v1 = (float) ((float) sumaP1() / 25.0);
-        float v2 = (float) ((float) sumaP2() / 20.0);
-        float v3 = (float) ((float) sumaP3() / 20.0);
-        float v4 = (float) ((float) sumaP4() / 20.0);
+    public double Ptotal() {
+        double v1 = (double) ((double) sumaP1() / 25.0);
+        double v2 = (double) ((double) sumaP2() / 20.0);
+        double v3 = (double) ((double) sumaP3() / 20.0);
+        double v4 = (double) ((double) sumaP4() / 20.0);
 
-        float p1 = (float) (v1 * 0.30);
-        float p2 = (float) (v2 * 0.15);
-        float p3 = (float) (v3 * 0.15);
-        float p4 = (float) (v4 * 0.40);
-        return (p1 + p2 + p3 + p4) * 100;
+        double p1 = (double) (v1 * 0.30);
+        double p2 = (double) (v2 * 0.15);
+        double p3 = (double) (v3 * 0.15);
+        double p4 = (double) (v4 * 0.40);
+        bd = new BigDecimal(((p1 + p2 + p3 + p4) * 100));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
-    public float P1() {
-        float v1 = (float) ((float) sumaP1() / 25.0);
-        return (float) (v1 * 0.30);
+    public double P1() { 
+        double v1 = (double) ((double) sumaP1() / 25.0);
+        bd=new BigDecimal(((double)(v1 * 0.30)));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public double P2() {
-        float v2 = (float) ((float) sumaP2() / 20.0);
-        return (float) (v2 * 0.15);
+        double v2 = (double) ((double) sumaP2() / 20.0);
+        bd=new BigDecimal(((double) (v2 * 0.15)));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
-    public float P3() {
-        float v3 = (float) ((float) sumaP3() / 20.0);
-        return (float) (v3 * 0.15);
+    public double P3() {
+        double v3 = (double) ((double) sumaP3() / 20.0);
+        bd=new BigDecimal(((double) (v3 * 0.15)));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
-    public float P4() {
-        float v4 = (float) ((float) sumaP4() / 20.0);
-        return (float) (v4 * 0.40);
+    public double P4() {
+        double v4 = (double) ((double) sumaP4() / 20.0);
+        bd=new BigDecimal(((double) (v4 * 0.40)));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     public float vPatrimonio4() {
@@ -376,6 +392,7 @@ public class FuncionesEvaluacion {
         grafica = ChartFactory.createBarChart3D("Caracteristicas de " + municipio + "," + estado, "Aspecto",
                 "Puntuaje", data, PlotOrientation.VERTICAL, true, true, false);
         grafica.getCategoryPlot().addRangeMarker(marker);
+        grafica.getCategoryPlot().getRangeAxis().setRange(0,100);
         return grafica;
     }
 

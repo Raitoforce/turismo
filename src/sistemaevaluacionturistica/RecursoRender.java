@@ -26,7 +26,7 @@ public class RecursoRender extends JLabel implements ListCellRenderer<Recursos>{
             setForeground(jlist.getSelectionForeground());
         } else {
             if(!recurso.get_State())
-            setBackground(Color.GREEN);
+            setBackground(Color.WHITE);
             else
                 setBackground(Color.ORANGE);
             } 

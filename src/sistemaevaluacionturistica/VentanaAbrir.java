@@ -51,6 +51,7 @@ public class VentanaAbrir extends javax.swing.JDialog {
         this.fe=fe;
         this.vi=vi;
         llenarEstados();
+        pack();
         this.setLocationRelativeTo(null);
         setModalityType(ModalityType.APPLICATION_MODAL);
         //setVisible(true);
@@ -67,7 +68,6 @@ public class VentanaAbrir extends javax.swing.JDialog {
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Abrir datos de municipio");
         setLocationByPlatform(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

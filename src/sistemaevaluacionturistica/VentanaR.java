@@ -184,7 +184,7 @@ public class VentanaR extends javax.swing.JDialog {
 
         jPanel3.setLayout(new java.awt.GridLayout(7, 0, 0, 1));
 
-        p1.setBackground(new java.awt.Color(204, 0, 0));
+        p1.setBackground(new java.awt.Color(255, 255, 255));
         p1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         p1.setOpaque(true);
@@ -258,7 +258,7 @@ public class VentanaR extends javax.swing.JDialog {
 
         jPanel6.setLayout(new java.awt.GridLayout(7, 0, 0, 1));
 
-        p2.setBackground(new java.awt.Color(204, 0, 0));
+        p2.setBackground(new java.awt.Color(255, 255, 255));
         p2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         p2.setOpaque(true);
@@ -328,7 +328,7 @@ public class VentanaR extends javax.swing.JDialog {
 
         jPanel9.setLayout(new java.awt.GridLayout(7, 0, 0, 1));
 
-        p3.setBackground(new java.awt.Color(204, 0, 0));
+        p3.setBackground(new java.awt.Color(255, 255, 255));
         p3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         p3.setOpaque(true);
@@ -402,7 +402,7 @@ public class VentanaR extends javax.swing.JDialog {
 
         jPanel12.setLayout(new java.awt.GridLayout(7, 0, 0, 1));
 
-        p4.setBackground(new java.awt.Color(204, 0, 0));
+        p4.setBackground(new java.awt.Color(255, 255, 255));
         p4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         p4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         p4.setOpaque(true);

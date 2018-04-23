@@ -107,6 +107,7 @@
                           <StringArray count="0"/>
                         </Property>
                         <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Los recursos resaltados con color anaranjado a&#xfa;n no han sido evaluados"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VentanaRecursos_jList1"/>
@@ -118,6 +119,7 @@
                 <Component class="javax.swing.JButton" name="btn_agregar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Agregar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Agregar un Nuevo Recurso"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_agregarActionPerformed"/>
@@ -126,6 +128,7 @@
                 <Component class="javax.swing.JButton" name="btn_eliminar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Eliminar el recurso evaluado"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_eliminarActionPerformed"/>
@@ -139,6 +142,7 @@
                 <Component class="javax.swing.JButton" name="btn_evaluar">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Evaluar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Evaluar el recurso seleccionado"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_evaluarActionPerformed"/>
@@ -255,6 +259,7 @@
                 <Component class="javax.swing.JButton" name="btn_GVS">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Grafica VS"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Graficara el valor de patrimonio vs el valor de uso de todos los recursos evaluados"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                   </Properties>
                   <Events>

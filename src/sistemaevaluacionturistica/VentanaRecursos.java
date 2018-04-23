@@ -91,9 +91,11 @@ public class VentanaRecursos extends javax.swing.JDialog {
         jPanel10.setLayout(new java.awt.GridLayout(1, 1));
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setToolTipText("Los recursos resaltados con color anaranjado aún no han sido evaluados");
         jScrollPane1.setViewportView(jList1);
 
         btn_agregar.setText("Agregar");
+        btn_agregar.setToolTipText("Agregar un Nuevo Recurso");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_agregarActionPerformed(evt);
@@ -101,6 +103,7 @@ public class VentanaRecursos extends javax.swing.JDialog {
         });
 
         btn_eliminar.setText("Eliminar");
+        btn_eliminar.setToolTipText("Eliminar el recurso evaluado");
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_eliminarActionPerformed(evt);
@@ -110,6 +113,7 @@ public class VentanaRecursos extends javax.swing.JDialog {
         jLabel5.setText("Recursos");
 
         btn_evaluar.setText("Evaluar");
+        btn_evaluar.setToolTipText("Evaluar el recurso seleccionado");
         btn_evaluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_evaluarActionPerformed(evt);
@@ -200,6 +204,7 @@ public class VentanaRecursos extends javax.swing.JDialog {
         jPanel12.add(jPanel14);
 
         btn_GVS.setText("Grafica VS");
+        btn_GVS.setToolTipText("Graficara el valor de patrimonio vs el valor de uso de todos los recursos evaluados");
         btn_GVS.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_GVS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -248,11 +253,14 @@ public class VentanaRecursos extends javax.swing.JDialog {
         // TODO add your handling code here:
         int index=jList1.getSelectedIndex();
         if(index!=-1){
-            if(name.compareTo("4")==0){
-                fe.recursosNaturales.remove(index);
-            }else
-                fe.recursosCulturales.remove(index);
-            this.ActualizarLista();
+            int option = JOptionPane.showConfirmDialog(null, "¿Deseas Borrar este recurso?", "Advertencia", JOptionPane.YES_NO_OPTION);
+            if (option == JOptionPane.YES_OPTION) {        
+                if(name.compareTo("4")==0){
+                    fe.recursosNaturales.remove(index);
+                }else
+                    fe.recursosCulturales.remove(index);
+                this.ActualizarLista();
+            }
         }
         else{
             JOptionPane.showMessageDialog(this, "Seleccione un recurso", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
